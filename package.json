@@ -1,10 +1,13 @@
 {
-  "name": "fanfare_cuc",
+  "name": "gamecuc",
   "version": "1.0.0",
-  "description": "Site de la fanfare CUC",
+  "description": "Site du game de la fanfare CUC",
   "main": "index.js",
   "dependencies": {
     "angular": "^1.4.8",
+    "angular-animate": "^1.4.8",
+    "angular-resource": "^1.4.8",
+    "angular-route": "^1.4.8",
     "lodash": "^4.0.0"
   },
   "devDependencies": {},
@@ -13,12 +16,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adrienbrunet/fanfare_cuc.git"
+    "url": "git+https://github.com/adrienbrunet/cucgame.git"
   },
   "author": "Adrien Brunet",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/adrienbrunet/fanfare_cuc/issues"
+    "url": "https://github.com/adrienbrunet/cucgame/issues"
   },
-  "homepage": "https://github.com/adrienbrunet/fanfare_cuc#readme"
+  "homepage": "https://github.com/adrienbrunet/cucgame#readme"
 }
