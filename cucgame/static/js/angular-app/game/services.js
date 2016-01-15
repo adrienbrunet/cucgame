@@ -1,61 +1,32 @@
-angular.module('ground_station')
-    .factory('GroundStationManager', GroundStationManager);
+angular.module('game')
+    .factory('GameManager', GameManager);
 
 
-function GroundStationManager($q, GroundStation) {
+function GameManager($q, Character) {
     "use strict";
-    var _GroundStationManager = function () {
+    var _GameManager = function () {
         var self = this;
 
-        self._all_ground_stations = [];
+        self._all_characters = [];
 
         self.getAll = function () {
-            var ground_stations = GroundStation.query();
-            ground_stations.$promise.then(function (data) {
-                self._all_ground_stations = data;
+            var characters = Character.query();
+            characters.$promise.then(function (data) {
+                self._all_characters = data;
             });
-            return ground_stations;
+            return characters;
         };
 
-        self.getGroundStationById = function (id) {
-            return _.find(self._all_ground_stations, function (gs) {
-                return gs.pk === id;
+        self.getCharacterById = function (id) {
+            return _.find(self._all_characters, function (c) {
+                return c.pk === id;
             });
-        };
-
-        self.createRadioAmatorGroundStation = function (data, pk) {
-            var newGroundStation = new GroundStation(data);
-
-            if (angular.isDefined(pk)) {
-                newGroundStation.pk = pk;
-                return newGroundStation.$update().then(
-                    function (res) {
-                        self._all_ground_stations[_.findIndex(self._all_ground_stations, function (gs) {
-                            return a.pk === pk;
-                        })] = res;
-                        return res;
-                    },
-                    function (res) {
-                        return $q.reject(res);
-                    }
-                );
-            } else {
-                return newGroundStation.$save(
-                    function (res) {
-                        self._all_ground_stations.push(res);
-                        return res;
-                    },
-                    function (res) {
-                        return $q.reject(res);
-                    }
-                );
-            }
         };
 
     };
 
-    var am = new _GroundStationManager();
-    return am;
+    var gm = new _GameManager();
+    return gm;
 
 }
-GroundStationManager.$inject = ['$q', 'GroundStation'];
+GameManager.$inject = ['$q', 'Character'];
