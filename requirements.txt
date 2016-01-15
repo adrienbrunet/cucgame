@@ -1,1 +1,5 @@
-Django
+django
+djangorestframework
+pytest
+pytest-cov
+
