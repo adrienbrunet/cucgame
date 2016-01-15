@@ -1,0 +1,24 @@
+{
+  "name": "fanfare_cuc",
+  "version": "1.0.0",
+  "description": "Site de la fanfare CUC",
+  "main": "index.js",
+  "dependencies": {
+    "angular": "^1.4.8",
+    "lodash": "^4.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrienbrunet/fanfare_cuc.git"
+  },
+  "author": "Adrien Brunet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adrienbrunet/fanfare_cuc/issues"
+  },
+  "homepage": "https://github.com/adrienbrunet/fanfare_cuc#readme"
+}
