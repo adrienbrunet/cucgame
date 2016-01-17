@@ -3,6 +3,9 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+def root(*dirs):
+    return os.path.join(os.path.abspath(BASE_DIR), *dirs)
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -24,6 +27,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_assets',
     'rest_framework',
     'game',
 )
@@ -44,7 +48,7 @@ ROOT_URLCONF = 'cucgame.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,3 +93,22 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    root('static'),
+    root('node_modules'),
+    root('cucgame/static'),
+)
+
+
+ASSETS_VERSIONS = 'hash:32'
+# The javascript we have doesn't pass with Closure advanced optimizations
+# CLOSURE_COMPRESSOR_OPTIMIZATION = 'ADVANCED_OPTIMIZATIONS'
+
+CLOSURE_EXTRA_ARGS = ['--language_in', 'ECMASCRIPT5']
+
+ASSETS_URL_EXPIRE = False
+
+ASSETS_DEBUG = DEBUG is True
+
+ASSETS_AUTO_BUILD = DEBUG is True
