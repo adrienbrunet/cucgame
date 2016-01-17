@@ -1,0 +1,15 @@
+.center {
+	text-align: center;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.mid-width {
+	width: 50%;
+}
