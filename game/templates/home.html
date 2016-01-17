@@ -1,16 +1,44 @@
 {% extends "skeleton.html" %}
 
-{% block ng-app %}ng-app="dispatch" ng-strict-di{% endblock ng-app %}
+{% block ng_app %}ng-app="dispatch" ng-strict-di{% endblock ng_app %}
 
 {% block body %}
-<div class="container">
-	<div class="row">
-		<div class="col-md-6">
-			<h1>First Character</h1>
-		</div>
-		<div class="col-md-6">
-			<h1>Enemy</h1>
-		</div>
-	</div>
+<div class="container" ng-controller="MainController as ctrl">
+    <div class="row">
+        <div class="col-md-6" ng-cloak>
+            <h1>{% verbatim %}{{ ctrl.player.name }}{% endverbatim %}</h1>
+            <div>
+                <span><b>HP: <b></span><uib-progressbar ng-if="ctrl.player.hp >= 20" value="ctrl.player.hp"><span style="color:white; white-space:nowrap;">{% verbatim %}{{ ctrl.player.hp }} %{% endverbatim %}</span></uib-progressbar>
+                <uib-progressbar type="danger" ng-if="ctrl.player.hp < 20" value="ctrl.player.hp"><span style="color:white; white-space:nowrap;">{% verbatim %}{{ ctrl.player.hp }} %{% endverbatim %}</span></uib-progressbar>
+            </div>
+            <h4>Actif</h4>
+            <span class="btn-group full-width" role='group'>
+                <button ng-disabled="ctrl.player.counter_default.play_a_song < 1" type="button" class='btn btn-warning mid-width' ng-click="ctrl.command_attack(ctrl.enemy, 'play_a_song');">{% verbatim %}Jouer "{{ ctrl.song }}" - {{ ctrl.player.counter_default.play_a_song }}/ {{ ctrl.counter_default.play_a_song }}{% endverbatim %}</button>
+                <button ng-disabled="ctrl.player.counter_default.drink_a_beer < 1" type="button" class='btn btn-success mid-width' ng-click="ctrl.command_attack(ctrl.player, 'drink_a_beer');"> Boire une Kro  {% verbatim %}- {{ ctrl.player.counter_default.drink_a_beer }}/ {{ ctrl.counter_default.drink_a_beer }}{% endverbatim %}</button>
+            </span>
+            <h4>Passif</h4>
+            <span class="btn-group full-width" role='group'>
+                <button  ng-disabled="ctrl.player.counter_default.tune < 1" type="button" class='btn btn-default mid-width' ng-click="ctrl.command_attack(ctrl.player, 'tune');"> S'accorder  {% verbatim %}- {{ ctrl.player.counter_default.tune }}/ {{ ctrl.counter_default.tune }}{% endverbatim %}</button>
+                <button type="button" class='btn btn-default mid-width'  ng-disabled="ctrl.player.counter_default.take_a_piss < 1" ng-click="ctrl.command_attack(ctrl.player, 'take_a_piss');"> Pisser {% verbatim %}- {{ ctrl.player.counter_default.take_a_piss }}/ {{ ctrl.counter_default.take_a_piss }}{% endverbatim %}</button>
+            </span>
+            <br><br>
+            <button ng-disabled="ctrl.player.counter_default.special_attack < 1" type="button" class='btn btn-info full-width' ng-click="ctrl.command_attack(ctrl.enemy, 'special_attack');">Attaque spéciale : {% verbatim %}{{ ctrl.player.special_attack }} - {{ ctrl.player.counter_default.special_attack }}/ {{ ctrl.counter_default.special_attack }}{% endverbatim %}</button>
+        </div>
+        <div class="col-md-6" ng-cloak>
+            <h1>{% verbatim %}{{ ctrl.enemy.name }}{% endverbatim %}</h1>
+            <div>
+                <span><b>HP: <b></span>
+                <uib-progressbar ng-if="ctrl.enemy.hp >= 20" value="ctrl.enemy.hp"><span style="color:white; white-space:nowrap;">{% verbatim %}{{ ctrl.enemy.hp }} %{% endverbatim %}</span></uib-progressbar>
+                <uib-progressbar type="danger" ng-if="ctrl.enemy.hp < 20" value="ctrl.enemy.hp"><span style="color:white; white-space:nowrap;">{% verbatim %}{{ ctrl.enemy.hp }} %{% endverbatim %}</span></uib-progressbar>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <br><br>
+        </div>
+        <hr>
+        <div class="col-md-12 center" >
+            <button type='button' class='btn btn-default' ng-click='ctrl.reset();' ng-cloak>New fight !</button>
+        </div>
+    </div>
 </div>
 {% endblock body %}
