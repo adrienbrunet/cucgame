@@ -1,5 +1,5 @@
 angular.module('dispatch', [
-    'ng', 'ngRoute', 'game',
+    'ng', 'ngRoute', 'game', 'ngCookies', 'ngAnimate', 'ui.bootstrap',
 ])
 
 /*
