@@ -93,11 +93,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = root('static_prod')
 STATICFILES_DIRS = (
     root('static'),
     root('node_modules'),
-    root('cucgame/static'),
+    root('cucgame/static/'),
 )
 
 

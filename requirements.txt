@@ -4,3 +4,4 @@ django-assets
 pytest
 pytest-cov
 closure
+yuicompressor

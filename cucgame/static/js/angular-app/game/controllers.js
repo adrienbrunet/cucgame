@@ -2,11 +2,15 @@ angular.module('game')
     .controller('MainController', MainController);
 
 
-function MainController(GameManager) {
+function MainController($timeout, GameManager) {
     var self = this;
     var mapping_attack;
 
     self.counter_default = GameManager.counter_default;
+
+    self.currentAttack = {'player': undefined, 'enemy': undefined};
+
+    self.can_play = true;
 
     self.init_player = function (character) {
         character.hp = character.max_hp;
@@ -26,9 +30,29 @@ function MainController(GameManager) {
             current_character = self.player;
         }
 
+        if (current_character === self.player) {
+            self.can_play = false;
+            self.currentAttack.player = undefined;
+            self.currentAttack.enemy = undefined;
+        }
+
         var attack_method = mapping_attack[attack];
 
-        target.hp = target.hp - attack_method();
+        attack_dmg = attack_method();
+        target.hp = target.hp - attack_dmg;
+        if (target === self.player) {
+            if (attack_dmg > 0) {
+                angular.element(document.querySelector('#player')).addClass('shake');
+            } else if (attack_dmg < 0) {
+                angular.element(document.querySelector('#player')).addClass('tada');
+            }
+        } else {
+            if (attack_dmg > 0) {
+                angular.element(document.querySelector('#enemy')).addClass('shake');
+            } else if (attack_dmg < 0) {
+                angular.element(document.querySelector('#enemy')).addClass('tada');
+            }
+        }
 
         current_character.counter_default[attack] = current_character.counter_default[attack] - 1;
 
@@ -46,21 +70,19 @@ function MainController(GameManager) {
         self.random_songs();
 
         if (current_character === self.player) {
-            self.run_enemy_tour();
+            $timeout(function (){
+                angular.element(document.querySelector('#player')).removeClass('shake').removeClass('tada');
+                angular.element(document.querySelector('#enemy')).removeClass('shake').removeClass('tada');
+                self.run_enemy_tour();
+            }, 800);
+        } else {
+            self.can_play = true;
         }
     };
 
     self.random_songs = function () {
         self.song = _.shuffle(GameManager._all_songs)[0];
-    };
-
-    self.attack = function (target, attack) {
-        target.hp = target.hp - GameManager.play_a_song();
-    };
-
-    self.play_song = function (song) {
-        self.attack(target, attack);
-        self.run_enemy_tour();
+        self.other_song = _.shuffle(GameManager._all_songs)[0];
     };
 
     self.chose_attack = function () {
@@ -105,6 +127,11 @@ function MainController(GameManager) {
         res = self.chose_attack();
         attack = res[0];
         target = res[1];
+
+
+        self.currentAttack.enemy = attack;
+        console.log(self.currentAttack);
+
         self.command_attack(target, attack, self.enemy);
     };
 
@@ -127,4 +154,4 @@ function MainController(GameManager) {
 
 }
 
-MainController.$inject = ['GameManager'];
+MainController.$inject = ['$timeout', 'GameManager'];

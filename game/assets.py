@@ -7,6 +7,7 @@ from django_assets import Bundle, register
 css_main = Bundle(
     'bootstrap/dist/css/bootstrap.css',
     'font-awesome/css/font-awesome.css',
+    'css/animate.css',
     'css/styles.css',
 
     filters=('cssrewrite', 'yui_css',),
