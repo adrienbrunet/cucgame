@@ -26,6 +26,28 @@ function MainController($scope, $timeout, GameManager) {
         'special_attack': GameManager.special_attack
     };
 
+    // $watch()
+    $scope.$watch('ctrl.player.hp', function (a, b) {
+        var hp = self.player.hp;
+        if (hp < 20) {
+            self.progressbar.player = 'danger';
+        } else if (20 <= hp && hp < 40) {
+            self.progressbar.player = 'warning';
+        } else {
+            self.progressbar.player = 'primary';
+        }
+    }, true);
+    $scope.$watch('ctrl.enemy.hp', function () {
+        var hp = self.enemy.hp;
+        if (hp < 20) {
+            self.progressbar.enemy = 'danger';
+        } else if (20 <= hp && hp < 40) {
+            self.progressbar.enemy = 'warning';
+        } else {
+            self.progressbar.enemy = 'primary';
+        }
+    }, true);
+
     self.command_attack = function (target, attack, current_character) {
         if (angular.isUndefined(current_character)|| current_character === null) {
             current_character = self.player;
@@ -37,31 +59,17 @@ function MainController($scope, $timeout, GameManager) {
             self.currentAttack.enemy = undefined;
         }
 
-        // $watch()
-        $scope.$watch('self.player.hp', function () {
-            var hp = self.player.hp;
-            if (hp < 20) {
-                self.progressbar.player = 'danger';
-            } else if (20 <= hp && hp < 40) {
-                self.progressbar.player = 'warning';
-            } else {
-                self.progressbar.player = 'primary';
-            }
-        }, true);
-        $scope.$watch('self.enemy.hp', function () {
-            var hp = self.enemy.hp;
-            if (hp < 20) {
-                self.progressbar.enemy = 'danger';
-            } else if (20 <= hp && hp < 40) {
-                self.progressbar.enemy = 'warning';
-            } else {
-                self.progressbar.enemy = 'primary';
-            }
-        }, true);
-
         var attack_method = mapping_attack[attack];
 
         attack_dmg = attack_method();
+        result = target.hp - attack_dmg;
+        if (result > 100) {
+            target.hp = 100;
+        } else if (result < 0) {
+            return;
+        } else {
+            target.hp = result;
+        }
         target.hp = target.hp - attack_dmg;
         if (target === self.player) {
             if (attack_dmg > 0) {
@@ -80,14 +88,18 @@ function MainController($scope, $timeout, GameManager) {
         current_character.counter_default[attack] = current_character.counter_default[attack] - 1;
 
         if (attack === 'take_a_piss') {
-            current_character.counter_default['drink_a_beer'] = current_character.counter_default['drink_a_beer'] + 2;
+            current_character.counter_default['drink_a_beer'] = 2;
             current_character.counter_default['take_a_piss'] = 0;
         } else if (attack === 'drink_a_beer') {
             current_character.counter_default['take_a_piss'] = 1;
         } else if (attack === 'play_a_song') {
             current_character.counter_default['tune'] = 1;
         } else if (attack === 'tune') {
-            current_character.counter_default['play_a_song'] = current_character.counter_default['play_a_song'] + 3;
+            if (current_character.counter_default['play_a_song'] < 3) {
+                current_character.counter_default['play_a_song'] = current_character.counter_default['play_a_song'] + 3;
+            } else {
+                current_character.counter_default['play_a_song'] = 5;
+            }
         }
 
         self.random_songs();
@@ -151,9 +163,7 @@ function MainController($scope, $timeout, GameManager) {
         attack = res[0];
         target = res[1];
 
-
         self.currentAttack.enemy = attack;
-        console.log(self.currentAttack);
 
         self.command_attack(target, attack, self.enemy);
     };
@@ -170,10 +180,9 @@ function MainController($scope, $timeout, GameManager) {
         self.init_player(self.player);
         self.init_player(self.enemy);
 
-        self.random_songs();
+        self.currentAttack.enemy = undefined;
 
-        self.progressbar.player = "primary";
-        self.progressbar.enemy = "primary";
+        self.random_songs();
     };
 
     self.init();

@@ -8,12 +8,14 @@ xx animer les images
 xx changer les progressbar pour éviter que ca saute
 sauver issue des combats
 sauver log du combat
+fonction de replay
 ajouter son
 refactor
 Fuckin test angular side
-Quand on pisse ou s'accorde, on peut monter au dessus du max !
+xx Quand on pisse ou s'accorde, on peut monter au dessus du max !
+xx reinitialiser attaque enemy (représaille) quand on reset la partie
 passer en prod
 ajouter un fadein slide effect
 mettre un fond stylé
-screenshot pr prary
+xx screenshot pr prary
 classement elo
