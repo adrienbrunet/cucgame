@@ -2,6 +2,7 @@ django
 djangorestframework
 django-assets
 pytest
+pytest-django
 pytest-cov
 closure
 yuicompressor
