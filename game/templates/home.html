@@ -8,8 +8,9 @@
         <div class="col-md-6" ng-cloak>
             <h1>{% verbatim %}{{ ctrl.player.name }}{% endverbatim %}</h1>
             <div>
-                <span><b>HP: </b></span><uib-progressbar ng-if="ctrl.player.hp >= 20" value="ctrl.player.hp"><span style="color:white; white-space:nowrap;">{% verbatim %}{{ ctrl.player.hp }} %{% endverbatim %}</span></uib-progressbar>
-                <uib-progressbar type="danger" ng-if="ctrl.player.hp < 20" value="ctrl.player.hp"><span style="color:white; white-space:nowrap;">{% verbatim %}{{ ctrl.player.hp }} %{% endverbatim %}</span></uib-progressbar>
+                {% verbatim %}
+                <span><b>HP: </b></span><uib-progressbar type="{{ ctrl.progressbar.player }}" value="ctrl.player.hp"><span style="color:white; white-space:nowrap;">{{ ctrl.player.hp }} %</span></uib-progressbar>
+                {% endverbatim %}
             </div>
             <div id='player' class="center animated">
                 {% verbatim %}
@@ -38,8 +39,9 @@
             <h1>{% verbatim %}{{ ctrl.enemy.name }}{% endverbatim %}</h1>
             <div>
                 <span><b>HP: </b></span>
-                <uib-progressbar ng-if="ctrl.enemy.hp >= 20" value="ctrl.enemy.hp"><span style="color:white; white-space:nowrap;">{% verbatim %}{{ ctrl.enemy.hp }} %{% endverbatim %}</span></uib-progressbar>
-                <uib-progressbar type="danger" ng-if="ctrl.enemy.hp < 20" value="ctrl.enemy.hp"><span style="color:white; white-space:nowrap;">{% verbatim %}{{ ctrl.enemy.hp }} %{% endverbatim %}</span></uib-progressbar>
+                {% verbatim %}
+                <uib-progressbar type="{{ ctrl.progressbar.enemy }}" value="ctrl.enemy.hp"><span style="color:white; white-space:nowrap;">{{ ctrl.enemy.hp }} %</span></uib-progressbar>
+                {% endverbatim %}
             </div>
             <div id='enemy' class="center animated">
                 {% verbatim %}

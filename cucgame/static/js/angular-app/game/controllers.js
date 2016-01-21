@@ -2,13 +2,14 @@ angular.module('game')
     .controller('MainController', MainController);
 
 
-function MainController($timeout, GameManager) {
+function MainController($scope, $timeout, GameManager) {
     var self = this;
     var mapping_attack;
 
     self.counter_default = GameManager.counter_default;
 
     self.currentAttack = {'player': undefined, 'enemy': undefined};
+    self.progressbar = {'player': "primary", 'enemy': "primary"};
 
     self.can_play = true;
 
@@ -35,6 +36,28 @@ function MainController($timeout, GameManager) {
             self.currentAttack.player = undefined;
             self.currentAttack.enemy = undefined;
         }
+
+        // $watch()
+        $scope.$watch('self.player.hp', function () {
+            var hp = self.player.hp;
+            if (hp < 20) {
+                self.progressbar.player = 'danger';
+            } else if (20 <= hp && hp < 40) {
+                self.progressbar.player = 'warning';
+            } else {
+                self.progressbar.player = 'primary';
+            }
+        }, true);
+        $scope.$watch('self.enemy.hp', function () {
+            var hp = self.enemy.hp;
+            if (hp < 20) {
+                self.progressbar.enemy = 'danger';
+            } else if (20 <= hp && hp < 40) {
+                self.progressbar.enemy = 'warning';
+            } else {
+                self.progressbar.enemy = 'primary';
+            }
+        }, true);
 
         var attack_method = mapping_attack[attack];
 
@@ -148,10 +171,13 @@ function MainController($timeout, GameManager) {
         self.init_player(self.enemy);
 
         self.random_songs();
+
+        self.progressbar.player = "primary";
+        self.progressbar.enemy = "primary";
     };
 
     self.init();
 
 }
 
-MainController.$inject = ['$timeout', 'GameManager'];
+MainController.$inject = ['$scope', '$timeout', 'GameManager'];
