@@ -1,14 +1,15 @@
 favicon
-settings logging for py test
+xx settings logging for py test
 xx drf
 xx assets
 xx angular-animate
 xx ajouter image
 xx animer les images
+xx changer les progressbar pour éviter que ca saute
 sauver issue des combats
+sauver log du combat
 ajouter son
 refactor
-changer les progressbar pour éviter que ca saute
 Fuckin test angular side
 Quand on pisse ou s'accorde, on peut monter au dessus du max !
 passer en prod
