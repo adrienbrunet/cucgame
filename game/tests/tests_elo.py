@@ -33,7 +33,6 @@ class TestElo(TestCase):
 
     def test_compute_new_score_for_player_can_be_below_300(self):
         new_score = compute_new_score_for_player(300, 300, 0)
-        assert False
         assert new_score == 300
 
     def test_get_new_scores(self):
