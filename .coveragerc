@@ -1,0 +1,5 @@
+[run]
+omit = *migrations*, *migration*, *__init__*, *settings*, *tests*
+
+[report]
+show_missing = True
