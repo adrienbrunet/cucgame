@@ -102,11 +102,11 @@ function GameManager($q, Character) {
             },
             {
                 'id': 9,
-                'name': 'Mapax',
+                'name': 'Menon',
                 'special_attack': 'Uppercut!',
                 'hp': 100,
                 'max_hp': 100,
-                'img': '/static/img/bite.png'
+                'img': '/static/img/menon.png'
             },
             {
                 'id': 10,
@@ -114,7 +114,7 @@ function GameManager($q, Character) {
                 'special_attack': 'Frapper à contre temps',
                 'hp': 100,
                 'max_hp': 100,
-                'img': '/static/img/bite.png'
+                'img': '/static/img/kapok.png'
             },
             {
                 'id': 11,
@@ -130,7 +130,7 @@ function GameManager($q, Character) {
                 'special_attack': 'Seringue usagée de MSF',
                 'hp': 100,
                 'max_hp': 100,
-                'img': '/static/img/bite.png'
+                'img': '/static/img/neutron.png'
             },
             {
                 'id': 13,
@@ -138,7 +138,7 @@ function GameManager($q, Character) {
                 'special_attack': 'Jouer de la banda !',
                 'hp': 100,
                 'max_hp': 100,
-                'img': '/static/img/bite.png'
+                'img': '/static/img/boliane.png'
             },
             {
                 'id': 14,
@@ -154,7 +154,7 @@ function GameManager($q, Character) {
                 'special_attack': 'Armoire bancale !',
                 'hp': 100,
                 'max_hp': 100,
-                'img': '/static/img/bite.png'
+                'img': '/static/img/k.png'
             },
             {
                 'id': 16,
@@ -170,7 +170,7 @@ function GameManager($q, Character) {
                 'special_attack': 'Boulettes de vin rouge brésilien',
                 'hp': 100,
                 'max_hp': 100,
-                'img': '/static/img/bite.png'
+                'img': '/static/img/bruna.png'
             },
             {
                 'id': 18,
@@ -178,7 +178,7 @@ function GameManager($q, Character) {
                 'special_attack': 'Meuler comme un porc',
                 'hp': 100,
                 'max_hp': 100,
-                'img': '/static/img/bite.png'
+                'img': '/static/img/medor.png'
             },
             {
                 'id': 19,
@@ -186,7 +186,7 @@ function GameManager($q, Character) {
                 'special_attack': 'Faire le beau gosse',
                 'hp': 100,
                 'max_hp': 100,
-                'img': '/static/img/bite.png'
+                'img': '/static/img/brazik.png'
             },
             {
                 'id': 20,
@@ -194,7 +194,7 @@ function GameManager($q, Character) {
                 'special_attack': 'Motorboat',
                 'hp': 100,
                 'max_hp': 100,
-                'img': '/static/img/bite.png'
+                'img': '/static/img/kiche.png'
             },
             {
                 'id': 21,
@@ -202,7 +202,7 @@ function GameManager($q, Character) {
                 'special_attack': 'Encourager le CUC !',
                 'hp': 100,
                 'max_hp': 100,
-                'img': '/static/img/bite.png'
+                'img': '/static/img/grap.png'
             },
             {
                 'id': 22,
@@ -210,7 +210,7 @@ function GameManager($q, Character) {
                 'special_attack': 'Boire des queues de charrue',
                 'hp': 100,
                 'max_hp': 100,
-                'img': '/static/img/bite.png'
+                'img': '/static/img/gsm.png'
             },
             {
                 'id': 23,

@@ -33,7 +33,7 @@ players = [
     },
     {
         'id': 9,
-        'name': 'Mapax'
+        'name': 'Menon'
     },
     {
         'id': 10,
