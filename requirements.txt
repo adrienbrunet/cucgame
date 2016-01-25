@@ -6,3 +6,5 @@ pytest-django
 pytest-cov
 closure
 yuicompressor
+factory_boy
+psycopg2

@@ -10,4 +10,5 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.Root.as_view(), name='home'),
+    url(r'^results/$', views.ListPlayer.as_view(), name='results'),
 ]

@@ -1,0 +1,29 @@
+{% extends "skeleton.html" %}
+
+{% block ng_app %}{% endblock ng_app %}
+
+{% block body %}
+<div class="container" ng-controller="MainController as ctrl">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Classement de vos fanfarons boxers préférés :</h3>
+            <table class="table table-responsive table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for player in player_list %}
+                    <tr>
+                        <td>{{ player.name }}</td>
+                        <td>{{ player.elo_score }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock body %}

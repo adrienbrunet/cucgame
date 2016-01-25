@@ -26,8 +26,12 @@ function GameManager($q, Character) {
             'Lumpy Gravy',
             'Chick Habit',
             'La Foule',
+            'I need a hero',
             'Final Countdown',
             'Sur la planche',
+            'Hey you',
+            "What's my age again",
+            'Od Skra',
             'All that she wants'
         ];
 
@@ -208,10 +212,18 @@ function GameManager($q, Character) {
                 'max_hp': 100,
                 'img': '/static/img/bite.png'
             },
+            {
+                'id': 23,
+                'name': 'Antigel',
+                'special_attack': 'Attaque fourbe depuis Annecy',
+                'hp': 100,
+                'max_hp': 100,
+                'img': '/static/img/bite.png'
+            }
         ];
 
         self.play_a_song = function () {
-            // actually play the song
+            // TODO: actually play the song
             return Math.round(30 * Math.random());
         };
 

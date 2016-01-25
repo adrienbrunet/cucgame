@@ -9,6 +9,7 @@ xx changer les progressbar pour éviter que ca saute
 xx Quand on pisse ou s'accorde, on peut monter au dessus du max !
 xx reinitialiser attaque enemy (représaille) quand on reset la partie
 xx screenshot pr prary
+handle left-right characters
 sauver issue des combats
 sauver log du combat
 fonction de replay
