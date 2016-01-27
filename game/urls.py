@@ -1,14 +1,17 @@
-# coding: utf-8
+from django.conf.urls import url, include
 
-# Copyright Luna Technology 2016
+from rest_framework.routers import DefaultRouter
+
+from . import api, views
 
 
-from django.conf.urls import url
-
-from . import views
+router = DefaultRouter()
+router.register(r'fights', api.FightViewSet, base_name='fight')
 
 
 urlpatterns = [
     url(r'^$', views.Root.as_view(), name='home'),
     url(r'^results/$', views.ListPlayer.as_view(), name='results'),
+
+    url(r'^api/', include(router.urls))
 ]
