@@ -1,5 +1,13 @@
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'VT323';
+}
+
+p, div {
+    font-family: 'VT323';
+}
+
 .center {
-	text-align: center;
+    text-align: center;
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -7,13 +15,9 @@
 }
 
 .full-width {
-	width: 100%;
+    width: 100%;
 }
 
 .mid-width {
-	width: 50%;
-}
-
-.greybackground {
-	background-color: grey;
+    width: 50%;
 }
