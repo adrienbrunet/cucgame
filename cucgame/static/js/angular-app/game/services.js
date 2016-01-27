@@ -218,7 +218,7 @@ function GameManager($q, Character) {
                 'special_attack': 'Attaque fourbe depuis Annecy',
                 'hp': 100,
                 'max_hp': 100,
-                'img': '/static/img/bite.png'
+                'img': '/static/img/antigel.png'
             }
         ];
 
