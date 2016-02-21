@@ -1,10 +1,47 @@
 angular.module('game')
+    .factory('GameLogger', GameLogger)
     .factory('GameManager', GameManager);
 
-
-function GameManager($q, Character) {
+function GameLogger() {
     "use strict";
-    var _GameManager = function () {
+    var MyGameLogger = function () {
+        var self = this;
+
+        self.player = null;
+        self.enemy = null;
+        self.playerActions = [];
+        self.enemyActions = [];
+
+        self.initPlayersAndActions = function (player, enemy) {
+            self.player = player;
+            self.enemy = enemy;
+            self.playerActions = [];
+            self.enemyActions = [];
+        };
+
+        self.logAction = function (player, target, typeAction, description, damage) {
+            var action = {
+                typeAction: typeAction,
+                description: description,
+                damage: damage
+            };
+            if (player === 'player') {
+                self.playerActions.push(attack);
+            } else if (player === 'enemy') {
+                self.enemyActions.push(attack);
+            }
+        };
+
+    };
+
+    var logger = new MyGameLogger();
+    return logger;
+}
+GameManager.$inject = [];
+
+function GameManager(Character) {
+    "use strict";
+    var MyGameManager = function () {
         var self = this;
 
         self.counter_default = {
@@ -32,7 +69,11 @@ function GameManager($q, Character) {
             'Hey you',
             "What's my age again",
             'Od Skra',
-            'All that she wants'
+            'All that she wants',
+            'Simonarium',
+            'Santeria',
+            'Goletta',
+            'Happy'
         ];
 
         self._all_characters = [
@@ -245,8 +286,8 @@ function GameManager($q, Character) {
 
     };
 
-    var gm = new _GameManager();
+    var gm = new MyGameManager();
     return gm;
 
 }
-GameManager.$inject = ['$q', 'Character'];
+GameManager.$inject = ['Character'];

@@ -2,7 +2,7 @@ angular.module('game')
     .controller('MainController', MainController);
 
 
-function MainController($scope, $timeout, GameManager) {
+function MainController($scope, $timeout, GameManager, GameLogger) {
     var self = this;
     var mapping_attack;
 
@@ -26,26 +26,33 @@ function MainController($scope, $timeout, GameManager) {
         'special_attack': GameManager.special_attack
     };
 
-    // $watch()
-    $scope.$watch('ctrl.player.hp', function (a, b) {
-        var hp = self.player.hp;
-        if (hp < 20) {
-            self.progressbar.player = 'danger';
+    self.update_class_progressbar = function (hp) {
+        if (hp < 20 && hp > 0) {
+            return 'danger';
         } else if (20 <= hp && hp < 40) {
-            self.progressbar.player = 'warning';
+            return 'warning';
         } else {
-            self.progressbar.player = 'primary';
+            return 'primary';
         }
+    };
+
+    self.end_game = function () {
+        // open modal (deactivate modal close)
+    };
+
+    self.checkHP = function (hp, player_or_enemy) {
+         if( hp <= 0 ) {
+            self.end_game();
+        } else {
+            self.progressbar[player_or_enemy] = self.update_class_progressbar(hp);
+        }
+    };
+
+    $scope.$watch('ctrl.player.hp', function (hp) {
+        self.checkHP(hp, 'player');
     }, true);
-    $scope.$watch('ctrl.enemy.hp', function () {
-        var hp = self.enemy.hp;
-        if (hp < 20) {
-            self.progressbar.enemy = 'danger';
-        } else if (20 <= hp && hp < 40) {
-            self.progressbar.enemy = 'warning';
-        } else {
-            self.progressbar.enemy = 'primary';
-        }
+    $scope.$watch('ctrl.enemy.hp', function (hp) {
+        self.checkHP(hp, 'enemy');
     }, true);
 
     self.command_attack = function (target, attack, current_character) {
@@ -180,7 +187,10 @@ function MainController($scope, $timeout, GameManager) {
         self.init_player(self.player);
         self.init_player(self.enemy);
 
+        GameLogger.initPlayersAndActions(self.player, self.enemy);
+
         self.currentAttack.enemy = undefined;
+        self.can_play = true;
 
         self.random_songs();
     };
@@ -189,4 +199,4 @@ function MainController($scope, $timeout, GameManager) {
 
 }
 
-MainController.$inject = ['$scope', '$timeout', 'GameManager'];
+MainController.$inject = ['$scope', '$timeout', 'GameManager', 'GameLogger'];

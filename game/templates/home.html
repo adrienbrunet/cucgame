@@ -32,11 +32,11 @@
                 </span>
                 <h4><b>Passif</b></h4>
                 <span class="btn-group full-width" role='group'>
-                    <button  ng-disabled="ctrl.player.counter_default.tune < 1" type="button" class='btn btn-default mid-width' ng-click="ctrl.command_attack(ctrl.player, 'tune');"><i class="fa fa-tachometer"></i> S'accorder  {% verbatim %}- {{ ctrl.player.counter_default.tune }}/ {{ ctrl.counter_default.tune }}{% endverbatim %}</button>
-                    <button type="button" class='btn btn-default mid-width'  ng-disabled="ctrl.player.counter_default.take_a_piss < 1" ng-click="ctrl.command_attack(ctrl.player, 'take_a_piss');"><i class="fa fa-tint"></i> Pisser {% verbatim %}- {{ ctrl.player.counter_default.take_a_piss }}/ {{ ctrl.counter_default.take_a_piss }}{% endverbatim %}</button>
+                    <button  ng-disabled="ctrl.player.counter_default.tune < 1" type="button" class='btn btn-default mid-width' ng-click="ctrl.command_attack(ctrl.player, 'tune');"><i class="fa fa-tachometer"></i> S'accorder</button>
+                    <button type="button" class='btn btn-default mid-width'  ng-disabled="ctrl.player.counter_default.take_a_piss < 1" ng-click="ctrl.command_attack(ctrl.player, 'take_a_piss');"><i class="fa fa-tint"></i> Pisser</button>
                 </span>
                 <br><br>
-                <button ng-disabled="ctrl.player.counter_default.special_attack < 1" type="button" class='btn btn-info full-width' ng-click="ctrl.command_attack(ctrl.enemy, 'special_attack');"><i class="fa fa-bolt"></i> Attaque spéciale : {% verbatim %}{{ ctrl.player.special_attack }} - {{ ctrl.player.counter_default.special_attack }}/ {{ ctrl.counter_default.special_attack }}{% endverbatim %}</button>
+                <button ng-disabled="ctrl.player.counter_default.special_attack < 1" type="button" class='btn btn-info full-width' ng-click="ctrl.command_attack(ctrl.enemy, 'special_attack');"><i class="fa fa-bolt"></i> Attaque spéciale : {% verbatim %}{{ ctrl.player.special_attack }}{% endverbatim %} (coup unique)</button>
             </div>
         </div>
         <div class="col-md-6" ng-cloak>
