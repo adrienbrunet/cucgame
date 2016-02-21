@@ -10,6 +10,9 @@ xx Quand on pisse ou s'accorde, on peut monter au dessus du max !
 xx reinitialiser attaque enemy (représaille) quand on reset la partie
 xx screenshot pr prary
 xx classement elo
+xx font
+ajouter video
+bug combat (infinite spinner) (quand l'ennemi se soigne? attaque speciale? Rien de tout ca?)
 sauver issue des combats
 sauver log du combat
 fonction de replay
@@ -20,3 +23,6 @@ passer en prod
 ajouter un fadein slide effect
 mettre un fond stylé
 handle left-right characters
+ajouter lien vers la page du cuc
+ajouter prary dans le code
+mettre un konami-code qui remplace tout par des bites sur le site.

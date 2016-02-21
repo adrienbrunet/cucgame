@@ -1,10 +1,14 @@
 {% extends "skeleton.html" %}
+{% load static %}
 
 {% block ng_app %}ng-app="dispatch" ng-strict-di{% endblock ng_app %}
 
 {% block body %}
 <div class="container" ng-controller="MainController as ctrl">
     <div class="row">
+        <div class="center">
+            <img src='{% static "img/cucgame.png" %}' alt="CUC Game Logo">
+        </div>
         <div class="col-md-6" ng-cloak>
             <h1>{% verbatim %}{{ ctrl.player.name }}{% endverbatim %}</h1>
             <div>
@@ -14,7 +18,7 @@
             </div>
             <div id='player' class="center animated">
                 {% verbatim %}
-                <img ng-src="{{ctrl.player.img}}" alt="Player" class="greybackground">
+                <img ng-src="{{ctrl.player.img}}" alt="Player">
                 {% endverbatim %}
             </div>
             <div ng-if="!ctrl.can_play" class="center">
@@ -45,7 +49,7 @@
             </div>
             <div id='enemy' class="center animated">
                 {% verbatim %}
-                <img ng-src="{{ctrl.enemy.img}}" alt="Player" class="greybackground">
+                <img ng-src="{{ctrl.enemy.img}}" alt="Player">
                 {% endverbatim %}
             </div>
             <div class="col-md-12" ng-if='ctrl.currentAttack.enemy'>
@@ -63,12 +67,20 @@
                 {{ ctrl.currentAttack.enemy }}
             </div>
         </div>
+        <hr>
         <div class="col-md-12">
             <br><br>
         </div>
-        <hr>
-        <div class="col-md-12 center" >
-            <button type='button' class='btn btn-danger' ng-click='ctrl.reset();' ng-cloak>New fight !</button>
+        <div class="col-md-12">
+            <div class="center">
+                <button type='button' class='btn btn-danger btn-lg' ng-click='ctrl.reset();' ng-cloak>New fight !</button>
+            </div>
+            <div class="center">
+                <img src='{% static "img/cucgame.png" %}' alt="CUC Game Logo">
+            </div>
+        </div>
+        <div style="position: absolute; top: 0px; z-index:-999; margin-left: -20px; margin-right:-20px;" class="center">
+            <video src='{% static "video/bg.mp4" %}' autobuffer autoloop loop autoplay></video>
         </div>
     </div>
 </div>
