@@ -193,13 +193,29 @@ function MainController($scope, $timeout, GameManager, GameLogger) {
         self.init();
     };
 
-    self.init = function () {
-        self.players = _.shuffle(GameManager._all_characters);
-        self.player = self.players[0];
-        self.enemy = self.players[1];
+    self.displayImg = true;
 
-        self.init_player(self.player);
-        self.init_player(self.enemy);
+    self.init = function () {
+        self.displayImg = false;
+
+        $timeout(function () {
+
+            self.players = _.shuffle(GameManager._all_characters);
+            self.player = self.players[0];
+            self.enemy = self.players[1];
+
+            self.init_player(self.player);
+            self.init_player(self.enemy);
+        });
+
+        angular.element(document.querySelector('#player')).addClass('fadeInLeft');
+        angular.element(document.querySelector('#enemy')).addClass('fadeInRight');
+        self.displayImg = true;
+        $timeout(function () {
+            angular.element(document.querySelector('#player')).removeClass('fadeInLeft');
+            angular.element(document.querySelector('#enemy')).removeClass('fadeInRight');
+        }, 1000);
+
 
         GameLogger.initPlayersAndActions(self.player, self.enemy);
 

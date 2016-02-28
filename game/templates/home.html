@@ -7,7 +7,7 @@
 <div class="container" ng-controller="MainController as ctrl">
     <div class="row" id="main-row">
         <div class="col-md-12">
-        <div style="position: fixed; top: 0; width: 1500px; height: 100%; z-index: -1;">
+        <div style="position: absolute; top: 0; height: 100%; z-index: -1;">
             <video src='{% static "video/bg.mp4" %}' id="video-background" autobuffer autoloop loop autoplay></video>
         </div>
         <div class="col-md-6" ng-cloak id="playerInVideo">
@@ -17,7 +17,7 @@
                 <span><b>HP: </b></span><uib-progressbar type="{{ ctrl.progressbar.player }}" value="ctrl.player.hp"><span style="color:white; white-space:nowrap;">{{ ctrl.player.hp }} %</span></uib-progressbar>
                 {% endverbatim %}
             </div>
-            <div id='player' class="center animated">
+            <div ng-show="ctrl.displayImg" id='player' class="center animated topmargin">
                 {% verbatim %}
                 <img ng-src="{{ctrl.player.img}}" alt="Player">
                 {% endverbatim %}
@@ -31,14 +31,14 @@
                 <uib-progressbar type="{{ ctrl.progressbar.enemy }}" value="ctrl.enemy.hp"><span style="color:white; white-space:nowrap;">{{ ctrl.enemy.hp }} %</span></uib-progressbar>
                 {% endverbatim %}
             </div>
-            <div id='enemy' class="center animated">
+            <div ng-show="ctrl.displayImg" id='enemy' class="center animated topmargin">
                 {% verbatim %}
                 <img ng-src="{{ctrl.enemy.img}}" alt="Player">
                 {% endverbatim %}
             </div>
         </div>
         <div class="col-md-6" ng-cloak>
-            <div ng-if="!ctrl.can_play" class="center">
+            <div ng-if="!ctrl.can_play" class="center" ng-cloak>
                 <h1><i class="fa fa-spin fa-spinner"></i></h1>
             </div>
             <div ng-if="ctrl.can_play">
