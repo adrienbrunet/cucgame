@@ -6,6 +6,20 @@ function MainController($scope, $timeout, GameManager, GameLogger) {
     var self = this;
     var mapping_attack;
 
+    var dimVideoAndDIv = function () {
+        var row, videoElt, heightVideo, playerInVideo, enemyInVideo;
+        row = angular.element(document.getElementById('main-row'))[0];
+        videoElt = angular.element(document.getElementById('video-background'))[0];
+        videoElt.setAttribute("style","width:" + row.offsetWidth + "px");
+        heightVideo = videoElt.offsetHeight;
+        playerInVideo = angular.element(document.getElementById('playerInVideo'))[0];
+        enemyInVideo = angular.element(document.getElementById('enemyInVideo'))[0];
+        playerInVideo.setAttribute("style","min-height:" + heightVideo + "px");
+        enemyInVideo.setAttribute("style","min-height:" + heightVideo + "px");
+    };
+
+    dimVideoAndDIv();
+
     self.counter_default = GameManager.counter_default;
 
     self.currentAttack = {'player': undefined, 'enemy': undefined};

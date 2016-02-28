@@ -5,11 +5,12 @@
 
 {% block body %}
 <div class="container" ng-controller="MainController as ctrl">
-    <div class="row">
-        <div class="center">
-            <img src='{% static "img/cucgame.png" %}' alt="CUC Game Logo">
+    <div class="row" id="main-row">
+        <div class="col-md-12">
+        <div style="position: fixed; top: 0; width: 1500px; height: 100%; z-index: -1;">
+            <video src='{% static "video/bg.mp4" %}' id="video-background" autobuffer autoloop loop autoplay></video>
         </div>
-        <div class="col-md-6" ng-cloak>
+        <div class="col-md-6" ng-cloak id="playerInVideo">
             <h1>{% verbatim %}{{ ctrl.player.name }}{% endverbatim %}</h1>
             <div>
                 {% verbatim %}
@@ -21,6 +22,22 @@
                 <img ng-src="{{ctrl.player.img}}" alt="Player">
                 {% endverbatim %}
             </div>
+        </div>
+        <div class="col-md-6" ng-cloak id="enemyInVideo">
+            <h1>{% verbatim %}{{ ctrl.enemy.name }}{% endverbatim %}</h1>
+            <div>
+                <span><b>HP: </b></span>
+                {% verbatim %}
+                <uib-progressbar type="{{ ctrl.progressbar.enemy }}" value="ctrl.enemy.hp"><span style="color:white; white-space:nowrap;">{{ ctrl.enemy.hp }} %</span></uib-progressbar>
+                {% endverbatim %}
+            </div>
+            <div id='enemy' class="center animated">
+                {% verbatim %}
+                <img ng-src="{{ctrl.enemy.img}}" alt="Player">
+                {% endverbatim %}
+            </div>
+        </div>
+        <div class="col-md-6" ng-cloak>
             <div ng-if="!ctrl.can_play" class="center">
                 <h1><i class="fa fa-spin fa-spinner"></i></h1>
             </div>
@@ -40,18 +57,6 @@
             </div>
         </div>
         <div class="col-md-6" ng-cloak>
-            <h1>{% verbatim %}{{ ctrl.enemy.name }}{% endverbatim %}</h1>
-            <div>
-                <span><b>HP: </b></span>
-                {% verbatim %}
-                <uib-progressbar type="{{ ctrl.progressbar.enemy }}" value="ctrl.enemy.hp"><span style="color:white; white-space:nowrap;">{{ ctrl.enemy.hp }} %</span></uib-progressbar>
-                {% endverbatim %}
-            </div>
-            <div id='enemy' class="center animated">
-                {% verbatim %}
-                <img ng-src="{{ctrl.enemy.img}}" alt="Player">
-                {% endverbatim %}
-            </div>
             <div class="col-md-12" ng-if='ctrl.currentAttack.enemy'>
                 <h4><b>Représailles</b></h4>
                 {% verbatim %}
@@ -67,6 +72,7 @@
                 {{ ctrl.currentAttack.enemy }}
             </div>
         </div>
+        </div>
         <hr>
         <div class="col-md-12">
             <br><br>
@@ -78,9 +84,6 @@
             <div class="center">
                 <img src='{% static "img/cucgame.png" %}' alt="CUC Game Logo">
             </div>
-        </div>
-        <div style="position: absolute; top: 0px; z-index:-999; margin-left: -20px; margin-right:-20px;" class="center">
-            <video src='{% static "video/bg.mp4" %}' autobuffer autoloop loop autoplay></video>
         </div>
     </div>
 </div>
