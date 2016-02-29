@@ -27,3 +27,4 @@ handle left-right characters
 ajouter prary dans le code
 mettre un konami-code qui remplace tout par des bites sur le site.
 set debug true
+set django_asset true
