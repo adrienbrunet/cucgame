@@ -207,7 +207,7 @@ function GameManager(Character) {
             },
             {
                 'id': 17,
-                'name': 'Bruna',
+                'name': 'Pituite',
                 'special_attack': 'Boulettes de vin rouge brésilien',
                 'hp': 100,
                 'max_hp': 100,
