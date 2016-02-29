@@ -11,18 +11,19 @@ xx reinitialiser attaque enemy (représaille) quand on reset la partie
 xx screenshot pr prary
 xx classement elo
 xx font
-ajouter video
-bug combat (infinite spinner) (quand l'ennemi se soigne? attaque speciale? Rien de tout ca?)
+xx ajouter video
+xx bug combat (infinite spinner) (quand l'ennemi se soigne? attaque speciale? Rien de tout ca?)
+xx passer en prod
+xx ajouter un fadein slide effect
+xx mettre un fond stylé
+xx ajouter lien vers la page du cuc
+
 sauver issue des combats
 sauver log du combat
 fonction de replay
 ajouter son
-refactor
 Fuckin test angular side
-passer en prod
-ajouter un fadein slide effect
-mettre un fond stylé
 handle left-right characters
-ajouter lien vers la page du cuc
 ajouter prary dans le code
 mettre un konami-code qui remplace tout par des bites sur le site.
+set debug true
