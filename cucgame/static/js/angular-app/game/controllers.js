@@ -25,7 +25,9 @@ function MainController($scope, $timeout, GameManager, GameLogger) {
     self.currentAttack = {'player': undefined, 'enemy': undefined};
     self.progressbar = {'player': "primary", 'enemy': "primary"};
 
-    self.can_play = true;
+    // Booleans for display purposes
+    self.can_play = true;  // hide the action buttons during the "represailles"
+    self.hide_everything = true;  // hide the game for "you win/you lost" screen
 
     self.init_player = function (character) {
         character.hp = character.max_hp;
@@ -50,13 +52,16 @@ function MainController($scope, $timeout, GameManager, GameLogger) {
         }
     };
 
-    self.end_game = function () {
-        // open modal (deactivate modal close)
+    self.end_game = function (win_or_lose) {
+        $timeout(function () {
+            self.hide_everything = true;
+            self.loser = win_or_lose;
+        }, 1000);
     };
 
     self.checkHP = function (hp, player_or_enemy) {
-         if( hp <= 0 ) {
-            self.end_game();
+         if (hp <= 0) {
+            self.end_game(player_or_enemy);
         } else {
             self.progressbar[player_or_enemy] = self.update_class_progressbar(hp);
         }
@@ -86,7 +91,8 @@ function MainController($scope, $timeout, GameManager, GameLogger) {
         result = target.hp - attack_dmg;
         if (result > 100) {
             target.hp = 100;
-        } else if (result < 0) {
+        } else if (result <= 0) {
+            target.hp = result;
             return;
         } else {
             target.hp = result;
@@ -197,6 +203,8 @@ function MainController($scope, $timeout, GameManager, GameLogger) {
 
     self.init = function () {
         self.displayImg = false;
+        self.loser = undefined;
+        self.hide_everything = false;
 
         $timeout(function () {
 
