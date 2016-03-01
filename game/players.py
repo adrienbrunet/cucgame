@@ -65,7 +65,7 @@ players = [
     },
     {
         'id': 17,
-        'name': 'Bruna'
+        'name': 'Pituite'
     },
     {
         'id': 18,

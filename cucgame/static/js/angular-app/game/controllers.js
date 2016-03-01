@@ -2,7 +2,7 @@ angular.module('game')
     .controller('MainController', MainController);
 
 
-function MainController($scope, $timeout, GameManager, GameLogger) {
+function MainController($scope, $timeout, $http, GameManager, GameLogger) {
     var self = this;
     var mapping_attack;
 
@@ -52,10 +52,25 @@ function MainController($scope, $timeout, GameManager, GameLogger) {
         }
     };
 
+    self.switchPlayer = function (player) {
+        if (player == 'player') {
+            return 'enemy';
+        } else {
+            return 'player';
+        }
+    };
+
     self.end_game = function (win_or_lose) {
         $timeout(function () {
             self.hide_everything = true;
             self.loser = win_or_lose;
+            self.winner = self.switchPlayer(self.loser);
+            data = {
+                winner: self[self.winner].id,
+                loser: self[win_or_lose].id,
+                data: '[]'
+            };
+            $http.post('/api/fights/', data);
         }, 1000);
     };
 
@@ -97,7 +112,6 @@ function MainController($scope, $timeout, GameManager, GameLogger) {
         } else {
             target.hp = result;
         }
-        target.hp = target.hp - attack_dmg;
         if (target === self.player) {
             if (attack_dmg > 0) {
                 angular.element(document.querySelector('#player')).addClass('shake');
@@ -204,6 +218,7 @@ function MainController($scope, $timeout, GameManager, GameLogger) {
     self.init = function () {
         self.displayImg = false;
         self.loser = undefined;
+        self.winner = undefined;
         self.hide_everything = false;
 
         $timeout(function () {
@@ -237,4 +252,4 @@ function MainController($scope, $timeout, GameManager, GameLogger) {
 
 }
 
-MainController.$inject = ['$scope', '$timeout', 'GameManager', 'GameLogger'];
+MainController.$inject = ['$scope', '$timeout', '$http', 'GameManager', 'GameLogger'];
