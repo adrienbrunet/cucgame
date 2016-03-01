@@ -1,12 +1,14 @@
 {% extends "skeleton.html" %}
-
+{% load static %}
 {% block ng_app %}{% endblock ng_app %}
 
 {% block body %}
 <div class="container" ng-controller="MainController as ctrl">
     <div class="row">
         <div class="col-md-12">
-            <h3>Classement de vos fanfarons boxers préférés :</h3>
+            <h3>Classement de vos fanfarons boxers préférés : <img src="{% static 'img/ceinture.png' %}"></h3>
+
+            <p>Battez vous pour un jour remporter la récompense ultime !<p>
             <table class="table table-responsive table-hover table-striped">
                 <thead>
                     <tr>
@@ -17,7 +19,11 @@
                 <tbody>
                     {% for player in player_list %}
                     <tr>
-                        <td>{{ player.name }}</td>
+                        <td>
+                            {{ player.name }}
+                            {% if forloop.first %}<img src="{% static 'img/medaille.png' %}">{% endif %}
+                            {% if forloop.last %}<img src="{% static 'img/medaille_perdant.png' %}">{% endif %}
+                        </td>
                         <td>{{ player.elo_score }}</td>
                     </tr>
                     {% endfor %}

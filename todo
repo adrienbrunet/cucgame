@@ -20,6 +20,7 @@ xx ajouter lien vers la page du cuc
 xx sauver issue des combats
 xx ajouter logo podium
 xx ajouter prary dans le code
+xx trier les joueurs selon leurs classements et ajouter les medailles
 
 sauver log du combat
 fonction de replay
@@ -29,4 +30,4 @@ handle left-right characters
 mettre un konami-code qui remplace tout par des bites sur le site.
 set debug true
 set django_asset true
-trier les joueurs selon leurs classements et ajouter les medailles
+ajouter d'autre format pour la vidéo
