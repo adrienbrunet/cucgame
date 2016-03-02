@@ -31,3 +31,4 @@ mettre un konami-code qui remplace tout par des bites sur le site.
 set debug true
 set django_asset true
 ajouter d'autre format pour la vidéo
+analytics
