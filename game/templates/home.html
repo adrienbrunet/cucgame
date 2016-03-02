@@ -6,11 +6,11 @@
 {% block body %}
 <div class="container" ng-controller="MainController as ctrl">
     <div class="row" id="main-row" ng-show="!ctrl.hide_everything" ng-cloak>
-        <div class="col-md-12 col-xs-6">
+        <div class="col-md-12 col-xs-12">
         <div style="position: absolute; top: 0; height: 100%; z-index: -1;">
             <video src='{% static "video/bg.mp4" %}' id="video-background" autobuffer autoloop loop autoplay></video>
         </div>
-        <div class="col-md-6" ng-cloak id="playerInVideo">
+        <div class="col-md-6 col-xs-6" ng-cloak id="playerInVideo">
             <h1>{% verbatim %}{{ ctrl.player.name }}{% endverbatim %}</h1>
             <div>
                 {% verbatim %}
@@ -23,7 +23,7 @@
                 {% endverbatim %}
             </div>
         </div>
-        <div class="col-md-6" ng-cloak id="enemyInVideo">
+        <div class="col-md-6 col-xs-6" ng-cloak id="enemyInVideo">
             <h1>{% verbatim %}{{ ctrl.enemy.name }}{% endverbatim %}</h1>
             <div>
                 <span><b>HP: </b></span>
@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class="col-md-6 col-xs-6" ng-cloak>
-            <div class="col-md-12" ng-if='ctrl.currentAttack.enemy'>
+            <div class="col-md-12 col-xs-6" ng-if='ctrl.currentAttack.enemy'>
                 <h4><b>Représailles</b></h4>
                 {% verbatim %}
                 <span class="animate-switch-container" ng-switch on="ctrl.currentAttack.enemy">
@@ -74,7 +74,7 @@
         </div>
         </div>
         <hr>
-        <div class="col-md-12">
+        <div class="col-md-12 col-xs-6">
             <br><br>
         </div>
     </div>
@@ -107,8 +107,8 @@
             <hr>
             <div class="center">
                 <img src='{% static "img/cucgame.png" %}' alt="CUC Game Logo">
-                <p>Un site trop cool fait par le <a href="http://fanfare-cuc.fr">CUC, la fanfare qui vous aime avant que vous l'aimiez !</a>.</p>
-                <p>Design: Prairie & CUC, Code: Tg powered on django & angular with &lt3. Copyright CUC 2016</p>
+                <p>Un site trop cool fait par le <a href="http://fanfare-cuc.fr">CUC, la fanfare qui vous aime avant que vous l'aimiez !</a></p>
+                <p>Design: Prairie &amp; CUC, Code: Tg powered on django &amp; angular with &#x2665;. Copyright CUC 2016</p>
             </div>
         </div>
     </div>
