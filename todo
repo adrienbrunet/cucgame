@@ -25,6 +25,7 @@ xx handle left-right characters
 xx ajouter son
 xx analytics
 xx Add button on ranking to go back to the game
+xx ajouter d'autre format pour la vidéo
 
 sauver log du combat
 fonction de replay
@@ -32,4 +33,3 @@ Fuckin test angular side
 mettre un konami-code qui remplace tout par des bites sur le site.
 set debug true
 set django_asset true
-ajouter d'autre format pour la vidéo

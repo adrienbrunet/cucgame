@@ -8,7 +8,12 @@
     <div class="row" id="main-row" ng-show="!ctrl.hide_everything" ng-cloak>
         <div class="col-md-12 col-xs-12">
         <div style="position: absolute; top: 0; height: 100%; z-index: -1;">
-            <video src='{% static "video/bg.mp4" %}' id="video-background" autobuffer autoloop loop autoplay></video>
+            <video id="video-background" autobuffer autoloop loop autoplay>
+                <source src='{% static "video/bg.mp4" %}' type="video/mp4">
+                <source src='{% static "video/bg.ogg" %}' type="video/ogg">
+                <source src='{% static "video/bg.webm" %}' type="video/webm">
+                    Video not supported on your browser.
+            </video>
         </div>
         <div class="col-md-6 col-xs-6" ng-cloak id="playerInVideo">
             <h1>{% verbatim %}{{ ctrl.player.name }}{% endverbatim %}</h1>
