@@ -21,12 +21,12 @@ xx sauver issue des combats
 xx ajouter logo podium
 xx ajouter prary dans le code
 xx trier les joueurs selon leurs classements et ajouter les medailles
+xx handle left-right characters
 
 sauver log du combat
 fonction de replay
 ajouter son
 Fuckin test angular side
-handle left-right characters
 mettre un konami-code qui remplace tout par des bites sur le site.
 set debug true
 set django_asset true

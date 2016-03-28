@@ -83,6 +83,7 @@ function GameManager(Character) {
                 'special_attack': 'Blast de grosse caisse',
                 'hp': 100,
                 'max_hp': 100,
+                'orientation': 'left',
                 'img': '/static/img/tg.png'
             },
             {
@@ -91,6 +92,7 @@ function GameManager(Character) {
                 'special_attack': 'Faire le chat',
                 'hp': 100,
                 'max_hp': 100,
+                'orientation': 'right',
                 'img': '/static/img/chawee.png'
             },
             {
@@ -99,6 +101,7 @@ function GameManager(Character) {
                 'special_attack': 'Trombone Rules!',
                 'hp': 100,
                 'max_hp': 100,
+                'orientation': 'left',
                 'img': '/static/img/rufa.png'
             },
             {
@@ -107,6 +110,7 @@ function GameManager(Character) {
                 'special_attack': 'Boobattack',
                 'hp': 100,
                 'max_hp': 100,
+                'orientation': 'right',
                 'img': '/static/img/moruna.png'
             },
             {
@@ -115,6 +119,7 @@ function GameManager(Character) {
                 'special_attack': 'Degeulissimo triple forte',
                 'hp': 100,
                 'max_hp': 100,
+                'orientation': 'left',
                 'img': '/static/img/chapon.png'
             },
             {
@@ -123,6 +128,7 @@ function GameManager(Character) {
                 'special_attack': "Jouer avec un accent af'icain",
                 'hp': 100,
                 'max_hp': 100,
+                'orientation': 'right',
                 'img': '/static/img/prairie.png'
             },
             {
@@ -131,6 +137,7 @@ function GameManager(Character) {
                 'special_attack': 'Punch du président !',
                 'hp': 100,
                 'max_hp': 100,
+                'orientation': 'left',
                 'img': '/static/img/couscous.png'
             },
             {
@@ -139,6 +146,7 @@ function GameManager(Character) {
                 'special_attack': 'Rhum arrangé au piment',
                 'hp': 100,
                 'max_hp': 100,
+                'orientation': 'right',
                 'img': '/static/img/phiniwn.png'
             },
             {
@@ -147,6 +155,7 @@ function GameManager(Character) {
                 'special_attack': 'Uppercut!',
                 'hp': 100,
                 'max_hp': 100,
+                'orientation': 'right',
                 'img': '/static/img/menon.png'
             },
             {
@@ -155,6 +164,7 @@ function GameManager(Character) {
                 'special_attack': 'Frapper à contre temps',
                 'hp': 100,
                 'max_hp': 100,
+                'orientation': 'right',
                 'img': '/static/img/kapok.png'
             },
             {
@@ -163,6 +173,7 @@ function GameManager(Character) {
                 'special_attack': 'Des bisous !',
                 'hp': 100,
                 'max_hp': 100,
+                'orientation': 'right',
                 'img': '/static/img/maitresse.png'
             },
             {
@@ -171,6 +182,7 @@ function GameManager(Character) {
                 'special_attack': 'Seringue usagée de MSF',
                 'hp': 100,
                 'max_hp': 100,
+                'orientation': 'right',
                 'img': '/static/img/neutron.png'
             },
             {
@@ -179,6 +191,7 @@ function GameManager(Character) {
                 'special_attack': 'Jouer de la banda !',
                 'hp': 100,
                 'max_hp': 100,
+                'orientation': 'left',
                 'img': '/static/img/boliane.png'
             },
             {
@@ -187,6 +200,7 @@ function GameManager(Character) {
                 'special_attack': 'Solo de basse canadienne',
                 'hp': 100,
                 'max_hp': 100,
+                'orientation': 'right',
                 'img': '/static/img/zlip.png'
             },
             {
@@ -195,6 +209,7 @@ function GameManager(Character) {
                 'special_attack': 'Armoire bancale !',
                 'hp': 100,
                 'max_hp': 100,
+                'orientation': 'right',
                 'img': '/static/img/k.png'
             },
             {
@@ -203,6 +218,7 @@ function GameManager(Character) {
                 'special_attack': 'Suivez le doigt !',
                 'hp': 100,
                 'max_hp': 100,
+                'orientation': 'left',
                 'img': '/static/img/bavette.png'
             },
             {
@@ -211,6 +227,7 @@ function GameManager(Character) {
                 'special_attack': 'Boulettes de vin rouge brésilien',
                 'hp': 100,
                 'max_hp': 100,
+                'orientation': 'right',
                 'img': '/static/img/bruna.png'
             },
             {
@@ -219,6 +236,7 @@ function GameManager(Character) {
                 'special_attack': 'Meuler comme un porc',
                 'hp': 100,
                 'max_hp': 100,
+                'orientation': 'right',
                 'img': '/static/img/medor.png'
             },
             {
@@ -227,6 +245,7 @@ function GameManager(Character) {
                 'special_attack': 'Faire le beau gosse',
                 'hp': 100,
                 'max_hp': 100,
+                'orientation': 'right',
                 'img': '/static/img/brazik.png'
             },
             {
@@ -235,6 +254,7 @@ function GameManager(Character) {
                 'special_attack': 'Motorboat',
                 'hp': 100,
                 'max_hp': 100,
+                'orientation': 'right',
                 'img': '/static/img/kiche.png'
             },
             {
@@ -243,6 +263,7 @@ function GameManager(Character) {
                 'special_attack': 'Encourager le CUC !',
                 'hp': 100,
                 'max_hp': 100,
+                'orientation': 'left',
                 'img': '/static/img/grap.png'
             },
             {
@@ -251,6 +272,7 @@ function GameManager(Character) {
                 'special_attack': 'Boire des queues de charrue',
                 'hp': 100,
                 'max_hp': 100,
+                'orientation': 'right',
                 'img': '/static/img/gsm.png'
             },
             {
@@ -259,6 +281,7 @@ function GameManager(Character) {
                 'special_attack': 'Attaque fourbe depuis Annecy',
                 'hp': 100,
                 'max_hp': 100,
+                'orientation': 'right',
                 'img': '/static/img/antigel.png'
             }
         ];

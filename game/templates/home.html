@@ -19,7 +19,7 @@
             </div>
             <div ng-show="ctrl.displayImg" id='player' class="center animated topmargin">
                 {% verbatim %}
-                <img ng-src="{{ctrl.player.img}}" alt="Player">
+                <img ng-src="{{ctrl.player.img}}" ng-class="{flipImage: ctrl.player.orientation !== 'right'}" alt="Player">
                 {% endverbatim %}
             </div>
         </div>
@@ -33,7 +33,7 @@
             </div>
             <div ng-show="ctrl.displayImg" id='enemy' class="center animated topmargin">
                 {% verbatim %}
-                <img ng-src="{{ctrl.enemy.img}}" alt="Player">
+                <img ng-src="{{ctrl.enemy.img}}"  ng-class="{flipImage: ctrl.enemy.orientation !== 'left'}" alt="Player">
                 {% endverbatim %}
             </div>
         </div>
