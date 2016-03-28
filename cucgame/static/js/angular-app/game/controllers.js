@@ -29,7 +29,7 @@ function MainController($scope, $timeout, $http, GameManager, GameLogger) {
         row = angular.element(document.getElementById('main-row'))[0];
         videoElt = angular.element(document.getElementById('video-background'))[0];
         videoElt.setAttribute("style","width:" + row.offsetWidth + "px");
-        heightVideo = videoElt.offsetHeight;
+        heightVideo = videoElt.offsetHeight - 70;
         playerInVideo = angular.element(document.getElementById('playerInVideo'))[0];
         enemyInVideo = angular.element(document.getElementById('enemyInVideo'))[0];
         playerInVideo.setAttribute("style","min-height:" + heightVideo + "px");
