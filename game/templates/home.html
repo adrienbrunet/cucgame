@@ -51,7 +51,7 @@
             Your browser does not support the audio element.
             </audio>
         </div>
-        <div class="col-md-6 col-xs-6" ng-cloak>
+        <div class="col-md-6 col-xs-12" ng-cloak>
             <div ng-if="!ctrl.can_play" class="center" ng-cloak>
                 <h1><i class="fa fa-spin fa-spinner"></i></h1>
             </div>
@@ -70,8 +70,8 @@
                 <button ng-disabled="ctrl.player.counter_default.special_attack < 1" type="button" class='btn btn-info full-width' ng-click="ctrl.command_attack(ctrl.enemy, 'special_attack');"><i class="fa fa-bolt"></i> {% verbatim %}{{ ctrl.player.special_attack }}{% endverbatim %} (coup unique)</button>
             </div>
         </div>
-        <div class="col-md-6 col-xs-6" ng-cloak>
-            <div class="col-md-12 col-xs-6" ng-if='ctrl.currentAttack.enemy'>
+        <div class="col-md-6 col-xs-12" ng-cloak>
+            <div class="col-md-12 col-xs-12" ng-if='ctrl.currentAttack.enemy'>
                 <h4><b>Représailles</b></h4>
                 {% verbatim %}
                 <span class="animate-switch-container" ng-switch on="ctrl.currentAttack.enemy">
@@ -88,12 +88,12 @@
         </div>
         </div>
         <hr>
-        <div class="col-md-12 col-xs-6">
+        <div class="col-md-12 col-xs-12">
             <br><br>
         </div>
     </div>
     <div class="row" ng-show="ctrl.hide_everything" ng-cloak>
-        <div class="col-md-12 center">
+        <div class="col-md-12 col-xs-12 center">
             <div ng-if="ctrl.loser === 'enemy';">
                 <img src="{% static 'img/win.png' %}">
                 <h3>Wouhou !</h3>
@@ -109,7 +109,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 col-xs-12">
             <div class="center">
                 <button type='button' class='btn btn-danger btn-lg' ng-click='ctrl.reset();' ng-cloak>New fight !</button>
             </div>
