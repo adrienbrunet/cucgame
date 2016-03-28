@@ -6,6 +6,24 @@ function MainController($scope, $timeout, $http, GameManager, GameLogger) {
     var self = this;
     var mapping_attack;
 
+    self.isAudioPlaying = true;  // because "autoplay"
+
+    var getAudioPlayer = function () {
+        return document.getElementsByTagName('audio')[0];
+    };
+
+    self.stopAudio = function () {
+        var audioPlayer = getAudioPlayer();
+        audioPlayer.pause();
+        self.isAudioPlaying = false;
+    };
+
+    self.playAudio = function () {
+        var audioPlayer = getAudioPlayer();
+        audioPlayer.play();
+        self.isAudioPlaying = true;
+    };
+
     var dimVideoAndDIv = function () {
         var row, videoElt, heightVideo, playerInVideo, enemyInVideo;
         row = angular.element(document.getElementById('main-row'))[0];

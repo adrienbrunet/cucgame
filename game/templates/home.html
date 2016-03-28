@@ -37,6 +37,15 @@
                 {% endverbatim %}
             </div>
         </div>
+        <div class="col-md-12 col-xs-12 center">
+            <button class="btn btn-default" ng-show="!ctrl.isAudioPlaying" ng-click="ctrl.playAudio();"><i class="fa fa-play-circle"></i> Et je remets le son!</button>
+            <button class="btn btn-default" ng-show="ctrl.isAudioPlaying" ng-click="ctrl.stopAudio();"><i class="fa fa-pause-circle"></i> Et je coupe le son!</button>
+            <audio  autobuffer autoloop loop autoplay>
+              <source src="{% static 'songs/cuc_song.ogg' %}" type="audio/ogg">
+              <source src="{% static 'songs/cuc_song.mp3' %}" type="audio/mpeg">
+            Your browser does not support the audio element.
+            </audio>
+        </div>
         <div class="col-md-6 col-xs-6" ng-cloak>
             <div ng-if="!ctrl.can_play" class="center" ng-cloak>
                 <h1><i class="fa fa-spin fa-spinner"></i></h1>
@@ -108,7 +117,7 @@
             <div class="center">
                 <img src='{% static "img/cucgame.png" %}' alt="CUC Game Logo">
                 <p>Un site trop cool fait par le <a href="http://fanfare-cuc.fr">CUC, la fanfare qui vous aime avant que vous l'aimiez !</a></p>
-                <p>Design: Prairie &amp; CUC, Code: Tg powered on django &amp; angular with &#x2665;. Copyright CUC 2016</p>
+                <p>Design: Prairie &amp; CUC, Music: Bavette, Code: Tagol powered on django &amp; angular with &#x2665;. Copyright CUC 2016</p>
             </div>
         </div>
     </div>
