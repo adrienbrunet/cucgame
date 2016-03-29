@@ -23,13 +23,23 @@ function GameLogger() {
             var action = {
                 typeAction: typeAction,
                 description: description,
-                damage: damage
+                damage: damage,
+                target: target
             };
-            if (player === 'player') {
-                self.playerActions.push(attack);
-            } else if (player === 'enemy') {
-                self.enemyActions.push(attack);
+            if (player === self.player) {
+                self.playerActions.push(action);
+            } else if (player === self.enemy) {
+                self.enemyActions.push(action);
             }
+        };
+
+        self.dump = function () {
+            return {
+                player: self.player,
+                enemy: self.enemy,
+                playerActions: self.playerActions,
+                enemyActions: self.enemyActions
+            };
         };
 
     };

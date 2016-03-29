@@ -74,16 +74,8 @@
             <div class="col-md-12 col-xs-12" ng-if='ctrl.currentAttack.enemy'>
                 <h4><b>Représailles</b></h4>
                 {% verbatim %}
-                <span class="animate-switch-container" ng-switch on="ctrl.currentAttack.enemy">
-                    <p class="animate-switch" ng-switch-when="special_attack">{{ ctrl.enemy.name }} utilise son ataque spéciale : {{ ctrl.enemy.special_attack }}</p>
-                    <p class="animate-switch" ng-switch-when="play_a_song">{{ ctrl.enemy.name }} joue {{ ctrl.other_song }} !!</p>
-                    <p class="animate-switch" ng-switch-when="drink_a_beer">{{ ctrl.enemy.name }} se bourre la gueule et gagne des HP !</p>
-                    <p class="animate-switch" ng-switch-when="take_a_piss">{{ ctrl.enemy.name }} pisse un coup !</p>
-                    <p class="animate-switch" ng-switch-when="tune">{{ ctrl.enemy.name }} s'accorde (ou fait semblant) avant de rejouer !</p>
-                    <p class="animate-switch" ng-switch-default>ERREUR</p>
-                </span>
+                <p ng-cloak>{{ ctrl.enemyAttackDescription }}</p>
                 {% endverbatim %}
-                {{ ctrl.currentAttack.enemy }}
             </div>
         </div>
         </div>

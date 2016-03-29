@@ -26,8 +26,10 @@ xx ajouter son
 xx analytics
 xx Add button on ranking to go back to the game
 xx ajouter d'autre format pour la vidéo
+xx Ajouter un petit timeout juste avant de gagner pour qu'on voit l'attaque qu'on a fait (idem si on perd)
+xx Enlever les class d'animation après la fin d'un combat
+xx sauver log du combat
 
-sauver log du combat
 fonction de replay
 page explication règles
 Ajouter Merci/Charlotte/Thobite
@@ -37,7 +39,5 @@ set debug true
 set django_asset true
 limiter le text dans les boutons pour rendering mobile
 Enlever la vidéo sur mobile (voir pourquoi elle ne marche pas)  (idem son) (ajouter un fond grisé)
-Enlever les class d'animation après la fin d'un combat
 Resize les images
 details des fanfarons qui apparraissent quand on clique dessus
-Ajouter un petit timeout juste avant de gagner pour qu'on voit l'attaque qu'on a fait (idem si on perd)

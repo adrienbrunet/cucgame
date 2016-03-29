@@ -86,10 +86,10 @@ function MainController($scope, $timeout, $http, GameManager, GameLogger) {
             data = {
                 winner: self[self.winner].id,
                 loser: self[win_or_lose].id,
-                data: '[]'
+                data: GameLogger.dump()
             };
             $http.post('/api/fights/', data);
-        }, 1000);
+        }, 1500);
     };
 
     self.checkHP = function (hp, player_or_enemy) {
@@ -121,6 +121,17 @@ function MainController($scope, $timeout, $http, GameManager, GameLogger) {
         var attack_method = mapping_attack[attack];
 
         attack_dmg = attack_method();
+
+        var description = self.descriptionAttack(current_character, attack);
+
+        // log attack info
+        if (target === self.player) {
+            targetName = 'player';
+        } else {
+            targetName = 'enemy';
+        }
+        GameLogger.logAction(current_character, targetName, attack, description, attack_dmg);
+
         result = target.hp - attack_dmg;
         if (result > 100) {
             target.hp = 100;
@@ -146,31 +157,54 @@ function MainController($scope, $timeout, $http, GameManager, GameLogger) {
 
         current_character.counter_default[attack] = current_character.counter_default[attack] - 1;
 
-        if (attack === 'take_a_piss') {
-            current_character.counter_default['drink_a_beer'] = 2;
-            current_character.counter_default['take_a_piss'] = 0;
-        } else if (attack === 'drink_a_beer') {
-            current_character.counter_default['take_a_piss'] = 1;
-        } else if (attack === 'play_a_song') {
-            current_character.counter_default['tune'] = 1;
-        } else if (attack === 'tune') {
-            if (current_character.counter_default['play_a_song'] < 3) {
-                current_character.counter_default['play_a_song'] = current_character.counter_default['play_a_song'] + 3;
-            } else {
-                current_character.counter_default['play_a_song'] = 5;
-            }
-        }
-
-        self.random_songs();
+        self.updateCounter(current_character, attack);
 
         if (current_character === self.player) {
-            $timeout(function (){
+            $timeout(function () {
+                self.random_songs();
                 angular.element(document.querySelector('#player')).removeClass('shake').removeClass('tada');
                 angular.element(document.querySelector('#enemy')).removeClass('shake').removeClass('tada');
                 self.run_enemy_tour();
             }, 800);
         } else {
             self.can_play = true;
+        }
+
+
+    };
+
+    self.descriptionAttack = function (player, attack) {
+        // Describe the attack. If the player is the enemy, update the variable so that the ui can display it!
+        var description = player.name;
+        if (attack === 'special_attack') {
+            description += ' utilise son attaque spéciale : ' + player.special_attack;
+        } else if (attack === 'play_a_song') {
+            description += ' joue ' + self.other_song + ' !!';
+        } else if (attack === 'drink_a_beer') {
+            description += ' se bourre la gueule et gagne des HP !';
+        } else if (attack === 'take_a_piss') {
+            description += ' pisse un coup !';
+        } else if (attack === 'tune') {
+            description += " s'accorde (ou fait semblant) avant de rejouer !";
+        }
+
+        if (player === self.enemy) {
+            self.enemyAttackDescription = description;
+        }
+
+        return description;
+    };
+
+    self.updateCounter = function (character, attack) {
+        if (attack === 'take_a_piss') {
+            character.counter_default['drink_a_beer'] = 2;
+            character.counter_default['take_a_piss'] = 0;
+        } else if (attack === 'drink_a_beer') {
+            character.counter_default['take_a_piss'] = 1;
+        } else if (attack === 'play_a_song') {
+            character.counter_default['tune'] = 1;
+        } else if (attack === 'tune') {
+            character.counter_default['play_a_song'] = Math.min(5, character.counter_default['play_a_song'] + 3);
         }
     };
 
@@ -238,17 +272,20 @@ function MainController($scope, $timeout, $http, GameManager, GameLogger) {
         self.loser = undefined;
         self.winner = undefined;
         self.hide_everything = false;
+        self.enemyAttackDescription = '';
 
         $timeout(function () {
-
             self.players = _.shuffle(GameManager._all_characters);
             self.player = self.players[0];
             self.enemy = self.players[1];
 
             self.init_player(self.player);
             self.init_player(self.enemy);
-        });
+            GameLogger.initPlayersAndActions(self.player, self.enemy);
+        }, 0);
 
+        angular.element(document.querySelector('#player')).removeClass('shake').removeClass('tada');
+        angular.element(document.querySelector('#enemy')).removeClass('shake').removeClass('tada');
         angular.element(document.querySelector('#player')).addClass('fadeInLeft');
         angular.element(document.querySelector('#enemy')).addClass('fadeInRight');
         self.displayImg = true;
@@ -258,7 +295,6 @@ function MainController($scope, $timeout, $http, GameManager, GameLogger) {
         }, 1000);
 
 
-        GameLogger.initPlayersAndActions(self.player, self.enemy);
 
         self.currentAttack.enemy = undefined;
         self.can_play = true;
