@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView, ListView
+from django.views.generic import ListView, TemplateView
 
 from .models import Player
 
@@ -9,3 +9,7 @@ class Root(TemplateView):
 
 class ListPlayer(ListView):
     model = Player
+
+
+class Rules(TemplateView):
+    template_name = "rules.html"

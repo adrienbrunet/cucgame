@@ -43,8 +43,11 @@
             </div>
         </div>
         <div class="col-md-12 col-xs-12 center">
-            <button class="btn btn-default" ng-show="!ctrl.isAudioPlaying" ng-click="ctrl.playAudio();"><i class="fa fa-play-circle"></i> Et je remets le son!</button>
-            <button class="btn btn-default" ng-show="ctrl.isAudioPlaying" ng-click="ctrl.stopAudio();"><i class="fa fa-pause-circle"></i> Et je coupe le son!</button>
+            <span class="btn-group" role='group'>
+                <button class="btn btn-default" ng-show="!ctrl.isAudioPlaying" ng-click="ctrl.playAudio();"><i class="fa fa-play-circle"></i> Et je remets le son!</button>
+                <button class="btn btn-default" ng-show="ctrl.isAudioPlaying" ng-click="ctrl.stopAudio();"><i class="fa fa-pause-circle"></i> Et je coupe le son!</button>
+                <a href="{% url 'rules' %}" class="btn btn-default"><i class="fa fa-life-ring"></i> Au secours, j'ai rien compris !</a>
+            </span>
             <audio  autobuffer autoloop loop autoplay>
               <source src="{% static 'songs/cuc_song.ogg' %}" type="audio/ogg">
               <source src="{% static 'songs/cuc_song.mp3' %}" type="audio/mpeg">
