@@ -4,7 +4,7 @@ from .models import Player
 
 
 class Root(TemplateView):
-    template_name = "home.html"
+    template_name = "game/home.html"
 
 
 class ListPlayer(ListView):
@@ -12,4 +12,8 @@ class ListPlayer(ListView):
 
 
 class Rules(TemplateView):
-    template_name = "rules.html"
+    template_name = "game/rules.html"
+
+
+class Replay(TemplateView):
+    template_name = "game/replay.html"
