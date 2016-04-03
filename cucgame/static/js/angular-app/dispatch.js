@@ -10,8 +10,12 @@ angular.module('dispatch', [
 
         $routeProvider
             .when('/', {
-                templateUrl: 'home.html',
-                controller: 'MainController as ctrl',
+                templateUrl: 'fight.html',
+                controller: 'MainController as ctrl'
+            })
+            .when('/replay/:token/', {
+                templateUrl: 'replay.html',
+                controller: 'ReplayController as replayCtrl'
             })
             .otherwise( {
                 // CAUTION: redirectTo doesn't fire $routeChangeStart, and so isn't affected by our catch-all redirection
@@ -19,4 +23,4 @@ angular.module('dispatch', [
             });
 
     }]
-)
+);

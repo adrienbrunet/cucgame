@@ -30,8 +30,13 @@ xx Ajouter un petit timeout juste avant de gagner pour qu'on voit l'attaque qu'o
 xx Enlever les class d'animation après la fin d'un combat
 xx sauver log du combat
 xx page explication règles
+xx deactivate rest framework html
+xx fightdata should be saved with double quotes !!
+xx load data from fight in replay mode
 
-fonction de replay
+replay: Run fight automagically
+
+Add a 404 page
 Ajouter Merci/Charlotte/Thobite
 Fuckin test angular side
 mettre un konami-code qui remplace tout par des bites sur le site.

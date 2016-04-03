@@ -13,7 +13,3 @@ class ListPlayer(ListView):
 
 class Rules(TemplateView):
     template_name = "game/rules.html"
-
-
-class Replay(TemplateView):
-    template_name = "game/replay.html"

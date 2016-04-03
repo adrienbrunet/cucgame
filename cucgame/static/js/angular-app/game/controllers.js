@@ -1,5 +1,6 @@
 angular.module('game')
-    .controller('MainController', MainController);
+    .controller('MainController', MainController)
+    .controller('ReplayController', ReplayController);
 
 
 function MainController($scope, $timeout, $http, GameManager, GameLogger) {
@@ -177,13 +178,13 @@ function MainController($scope, $timeout, $http, GameManager, GameLogger) {
         // Describe the attack. If the player is the enemy, update the variable so that the ui can display it!
         var description = player.name;
         if (attack === 'special_attack') {
-            description += ' utilise son attaque spéciale : ' + player.special_attack;
+            description += " utilise son attaque spéciale : " + player.special_attack;
         } else if (attack === 'play_a_song') {
-            description += ' joue ' + self.other_song + ' !!';
+            description += " joue " + self.other_song + " !!";
         } else if (attack === 'drink_a_beer') {
-            description += ' se bourre la gueule et gagne des HP !';
+            description += " se bourre la gueule et gagne des HP !";
         } else if (attack === 'take_a_piss') {
-            description += ' pisse un coup !';
+            description += " pisse un coup !";
         } else if (attack === 'tune') {
             description += " s'accorde (ou fait semblant) avant de rejouer !";
         }
@@ -272,7 +273,7 @@ function MainController($scope, $timeout, $http, GameManager, GameLogger) {
         self.loser = undefined;
         self.winner = undefined;
         self.hide_everything = false;
-        self.enemyAttackDescription = '';
+        self.enemyAttackDescription = "";
 
         $timeout(function () {
             self.players = _.shuffle(GameManager._all_characters);
@@ -305,5 +306,21 @@ function MainController($scope, $timeout, $http, GameManager, GameLogger) {
     self.init();
 
 }
-
 MainController.$inject = ['$scope', '$timeout', '$http', 'GameManager', 'GameLogger'];
+
+
+function ReplayController ($routeParams, Fight) {
+    var self = this;
+
+    self.hide_everything = true;
+
+    var token = $routeParams.token;
+    var fight = Fight.getFightData({pk: 0, uuid: token});
+
+    self.init = function () {
+
+    };
+
+    self.init();
+}
+ReplayController.$inject = ['$routeParams', 'Fight'];

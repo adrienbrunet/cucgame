@@ -15,7 +15,7 @@ SECRET_KEY = 'yq-rh^b#^0-s=tx$_0qz8h@gaz19fxpdc^1ifi96tz7yisp*3m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['game.fanfare-cuc.fr' ]
+ALLOWED_HOSTS = ['game.fanfare-cuc.fr']
 
 
 # Application definition
@@ -116,3 +116,9 @@ ASSETS_URL_EXPIRE = False
 ASSETS_DEBUG = DEBUG is True
 
 ASSETS_AUTO_BUILD = DEBUG is True
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
+}

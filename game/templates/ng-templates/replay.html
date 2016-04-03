@@ -1,0 +1,79 @@
+{% load static %}
+<div class="container">
+    <div class="center" ng-if="replayCtrl.hide_everything">
+        <h1>
+            <span class="fa fa-spin fa-spinner"></span>
+        </h1>
+    </div>
+    <div class="row" id="main-row" ng-show="!replayCtrl.hide_everything" ng-cloak>
+        <div class="col-md-12 col-xs-12">
+        <div style="position: absolute; top: 0; height: 100%; z-index: -1;">
+            <video id="video-background" autobuffer autoloop loop autoplay>
+                <source src='{% static "video/bg.mp4" %}' type="video/mp4">
+                <source src='{% static "video/bg.ogg" %}' type="video/ogg">
+                <source src='{% static "video/bg.webm" %}' type="video/webm">
+                    Video not supported on your browser.
+            </video>
+        </div>
+        <div class="col-md-6 col-xs-6" ng-cloak id="playerInVideo">
+            <h1>{% verbatim %}{{ replayCtrl.player.name }}{% endverbatim %}</h1>
+            <div>
+                {% verbatim %}
+                <span><b>HP: </b></span><uib-progressbar type="{{ replayCtrl.progressbar.player }}" value="replayCtrl.player.hp"><span style="color:white; white-space:nowrap;">{{ replayCtrl.player.hp }} %</span></uib-progressbar>
+                {% endverbatim %}
+            </div>
+            <div ng-show="replayCtrl.displayImg" id='player' class="center animated topmargin">
+                {% verbatim %}
+                <img ng-src="{{replayCtrl.player.img}}" ng-class="{flipImage: replayCtrl.player.orientation !== 'right'}" alt="Player">
+                {% endverbatim %}
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-6" ng-cloak id="enemyInVideo">
+            <h1>{% verbatim %}{{ replayCtrl.enemy.name }}{% endverbatim %}</h1>
+            <div>
+                <span><b>HP: </b></span>
+                {% verbatim %}
+                <uib-progressbar type="{{ replayCtrl.progressbar.enemy }}" value="replayCtrl.enemy.hp"><span style="color:white; white-space:nowrap;">{{ replayCtrl.enemy.hp }} %</span></uib-progressbar>
+                {% endverbatim %}
+            </div>
+            <div ng-show="replayCtrl.displayImg" id='enemy' class="center animated topmargin">
+                {% verbatim %}
+                <img ng-src="{{replayCtrl.enemy.img}}"  ng-class="{flipImage: replayCtrl.enemy.orientation !== 'left'}" alt="Player">
+                {% endverbatim %}
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 center">
+            <span class="btn-group" role='group'>
+                <button class="btn btn-default" ng-show="!replayCtrl.isAudioPlaying" ng-click="replayCtrl.playAudio();"><i class="fa fa-play-circle"></i> Et je remets le son!</button>
+                <button class="btn btn-default" ng-show="replayCtrl.isAudioPlaying" ng-click="replayCtrl.stopAudio();"><i class="fa fa-pause-circle"></i> Et je coupe le son!</button>
+                <a href="{% url 'rules' %}" class="btn btn-default"><i class="fa fa-life-ring"></i> Au secours, j'ai rien compris !</a>
+            </span>
+            <audio  autobuffer autoloop loop autoplay>
+              <source src="{% static 'songs/cuc_song.ogg' %}" type="audio/ogg">
+              <source src="{% static 'songs/cuc_song.mp3' %}" type="audio/mpeg">
+            Your browser does not support the audio element.
+            </audio>
+        </div>
+        <div class="col-md-6 col-xs-12" ng-cloak>
+
+        </div>
+
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+            <div class="center">
+                <button type='button' class='btn btn-danger btn-lg' ng-click='replayCtrl.reset();' ng-cloak>New fight !</button>
+            </div>
+            <hr>
+            <div class="center">
+                <a href="{% url 'results' %}"><img src="{% static 'img/podium.png' %}" alt='podium'></a>
+                <h3>Voir les classements de vos boxeurs préférés !</h3>
+            </div>
+            <hr>
+            <div class="center">
+                <img src='{% static "img/cucgame.png" %}' alt="CUC Game Logo">
+                <p>Un site trop cool fait par le <a href="http://fanfare-cuc.fr">CUC, la fanfare qui vous aime avant que vous l'aimiez !</a></p>
+                <p>Design: Prairie &amp; CUC, Music: Bavette, Code: Tagol powered on django &amp; angular with &#x2665;. Copyright CUC 2016</p>
+            </div>
+        </div>
+    </div>
+</div>
