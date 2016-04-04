@@ -1,14 +1,14 @@
 angular.module("game")
     .factory("GameAudio", GameAudio)
-    .factory("GameLogger", GameLogger)
+    .factory("GameUI", GameUI)
     .factory("GameManager", GameManager)
-    .factory("GameUI", GameUI);
+    .factory("GameLogger", GameLogger);
 
 
 // handles the audio commands
 function GameAudio () {
     "use strict";
-    self = {};
+    var self = {};
 
     self.flags = {
         isPlaying: true  // because "autoplay"
@@ -19,6 +19,7 @@ function GameAudio () {
     };
 
     self.stopAudio = function () {
+        console.log(self);
         var audioPlayer = getAudioPlayer();
         audioPlayer.pause();
         self.flags.isPlaying = false;
@@ -37,7 +38,7 @@ GameAudio.$inject = [];
 
 function GameUI () {
     "use strict";
-    self = {};
+    var self = {};
 
     self.dimVideoAndDIv = function () {
         var row, videoElt, heightVideo, playerInVideo, enemyInVideo;
@@ -75,53 +76,6 @@ function GameUI () {
 }
 GameUI.$inject = [];
 
-function GameLogger() {
-    "use strict";
-    var MyGameLogger = function () {
-        var self = this;
-
-        self.player = null;
-        self.enemy = null;
-        self.playerActions = [];
-        self.enemyActions = [];
-
-        self.initPlayersAndActions = function (player, enemy) {
-            self.player = player;
-            self.enemy = enemy;
-            self.playerActions = [];
-            self.enemyActions = [];
-        };
-
-        self.logAction = function (player, target, typeAction, description, damage) {
-            var action = {
-                typeAction: typeAction,
-                description: description,
-                damage: damage,
-                target: target
-            };
-            if (player === self.player) {
-                self.playerActions.push(action);
-            } else if (player === self.enemy) {
-                self.enemyActions.push(action);
-            }
-        };
-
-        self.dump = function () {
-            var data = {
-                player: self.player,
-                enemy: self.enemy,
-                playerActions: self.playerActions,
-                enemyActions: self.enemyActions
-            };
-            return JSON.stringify(data);
-        };
-
-    };
-
-    var logger = new MyGameLogger();
-    return logger;
-}
-GameManager.$inject = [];
 
 function GameManager(Character) {
     "use strict";
@@ -403,3 +357,51 @@ function GameManager(Character) {
 
 }
 GameManager.$inject = ["Character"];
+
+function GameLogger() {
+    "use strict";
+    var MyGameLogger = function () {
+        var self = this;
+
+        self.player = null;
+        self.enemy = null;
+        self.playerActions = [];
+        self.enemyActions = [];
+
+        self.initPlayersAndActions = function (player, enemy) {
+            self.player = player;
+            self.enemy = enemy;
+            self.playerActions = [];
+            self.enemyActions = [];
+        };
+
+        self.logAction = function (player, target, typeAction, description, damage) {
+            var action = {
+                typeAction: typeAction,
+                description: description,
+                damage: damage,
+                target: target
+            };
+            if (player === self.player) {
+                self.playerActions.push(action);
+            } else if (player === self.enemy) {
+                self.enemyActions.push(action);
+            }
+        };
+
+        self.dump = function () {
+            var data = {
+                player: self.player,
+                enemy: self.enemy,
+                playerActions: self.playerActions,
+                enemyActions: self.enemyActions
+            };
+            return JSON.stringify(data);
+        };
+
+    };
+
+    var logger = new MyGameLogger();
+    return logger;
+}
+GameLogger.$inject = [];
