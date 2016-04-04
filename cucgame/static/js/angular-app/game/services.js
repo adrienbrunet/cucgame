@@ -19,7 +19,6 @@ function GameAudio () {
     };
 
     self.stopAudio = function () {
-        console.log(self);
         var audioPlayer = getAudioPlayer();
         audioPlayer.pause();
         self.flags.isPlaying = false;
