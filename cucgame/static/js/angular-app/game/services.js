@@ -1,6 +1,79 @@
 angular.module("game")
+    .factory("GameAudio", GameAudio)
     .factory("GameLogger", GameLogger)
-    .factory("GameManager", GameManager);
+    .factory("GameManager", GameManager)
+    .factory("GameUI", GameUI);
+
+
+// handles the audio commands
+function GameAudio () {
+    "use strict";
+    self = {};
+
+    self.flags = {
+        isPlaying: true  // because "autoplay"
+    };
+
+    var getAudioPlayer = function () {
+        return document.getElementsByTagName('audio')[0];
+    };
+
+    self.stopAudio = function () {
+        var audioPlayer = getAudioPlayer();
+        audioPlayer.pause();
+        self.flags.isPlaying = false;
+    };
+
+    self.playAudio = function () {
+        var audioPlayer = getAudioPlayer();
+        audioPlayer.play();
+        self.flags.isPlaying = true;
+    };
+
+    return self;
+}
+GameAudio.$inject = [];
+
+
+function GameUI () {
+    "use strict";
+    self = {};
+
+    self.dimVideoAndDIv = function () {
+        var row, videoElt, heightVideo, playerInVideo, enemyInVideo;
+        row = angular.element(document.getElementById('main-row'))[0];
+        videoElt = angular.element(document.getElementById('video-background'))[0];
+        videoElt.setAttribute("style","width:" + row.offsetWidth + "px");
+        heightVideo = videoElt.offsetHeight - 70;
+        playerInVideo = angular.element(document.getElementById('playerInVideo'))[0];
+        enemyInVideo = angular.element(document.getElementById('enemyInVideo'))[0];
+        playerInVideo.setAttribute("style","min-height:" + heightVideo + "px");
+        enemyInVideo.setAttribute("style","min-height:" + heightVideo + "px");
+    };
+
+    self.cleanClassPlayer = function (player) {
+        var selector = "#" + player;
+        angular.element(document.querySelector(selector)).removeClass('shake').removeClass('tada');
+    };
+
+    self.cleanClass = function () {
+        self.cleanClassPlayer('enemy');
+        self.cleanClassPlayer('player');
+    };
+
+    self.addStartAnimation = function () {
+        angular.element(document.querySelector('#player')).addClass('fadeInLeft');
+        angular.element(document.querySelector('#enemy')).addClass('fadeInRight');
+    };
+
+    self.cleanStartAnimation = function () {
+        angular.element(document.querySelector('#player')).removeClass('fadeInLeft');
+        angular.element(document.querySelector('#enemy')).removeClass('fadeInRight');
+    };
+
+    return self;
+}
+GameUI.$inject = [];
 
 function GameLogger() {
     "use strict";
@@ -54,6 +127,11 @@ function GameManager(Character) {
     "use strict";
     var MyGameManager = function () {
         var self = this;
+
+        self.init_player = function (character) {
+            character.hp = character.max_hp;
+            character.counter_default = angular.copy(self.counter_default);
+        };
 
         self.counter_default = {
             "play_a_song": 5,

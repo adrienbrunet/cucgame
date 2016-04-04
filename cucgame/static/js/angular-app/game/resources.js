@@ -15,7 +15,7 @@ angular.module('game')
             {'pk': '@pk'},
             {
                 update: {method: 'PUT'},
-                getFightData: {method: 'GET', params: {action: 'get_fight_data'}, isArray: true}
+                getFightData: {method: 'GET', params: {action: 'get_fight_data'}}
             }
         );
     }]);

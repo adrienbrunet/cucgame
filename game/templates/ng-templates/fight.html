@@ -38,8 +38,8 @@
     </div>
     <div class="col-md-12 col-xs-12 center">
         <span class="btn-group" role='group'>
-            <button class="btn btn-default" ng-show="!ctrl.isAudioPlaying" ng-click="ctrl.playAudio();"><i class="fa fa-play-circle"></i> Et je remets le son!</button>
-            <button class="btn btn-default" ng-show="ctrl.isAudioPlaying" ng-click="ctrl.stopAudio();"><i class="fa fa-pause-circle"></i> Et je coupe le son!</button>
+            <button class="btn btn-default" ng-show="!ctrl.audioFlags.isPlaying" ng-click="ctrl.playAudio();"><i class="fa fa-play-circle"></i> Et je remets le son!</button>
+            <button class="btn btn-default" ng-show="ctrl.audioFlags.isPlaying" ng-click="ctrl.stopAudio();"><i class="fa fa-pause-circle"></i> Et je coupe le son!</button>
             <a href="{% url 'rules' %}" class="btn btn-default"><i class="fa fa-life-ring"></i> Au secours, j'ai rien compris !</a>
         </span>
         <audio  autobuffer autoloop loop autoplay>
@@ -87,12 +87,18 @@
             <img src="{% static 'img/win.png' %}">
             <h3>Wouhou !</h3>
             <p>Tu maitrises les KO par uppercuites !</p>
+
+            <p  ng-if="ctrl.replayUrl">Partages ton combat avec cette url: {% verbatim %}<a href="/#/replay/{{ ctrl.replayUrl }}">game.fanfare-cuc.fr/#/replay/{{ ctrl.replayUrl }}</a>{% endverbatim %}</p>
+
             <p>Et si tu venais nous affronter en vrai? Rendez-vous sur <a href="http://www.fanfare-cuc.fr">notre site</a> ou <a href="https://fr-fr.facebook.com/fanfare.CUC">notre facebook</a> !</p>
         </div>
         <div ng-if="ctrl.loser === 'player';">
             <img src="{% static 'img/perdu.png' %}">
             <h3>Oh no !</h3>
             <p>C'est la lose, t'as perdu !</p>
+
+            <p ng-if="ctrl.replayUrl">Partages ton combat avec cette url: {% verbatim %}<a href="/#/replay/{{ ctrl.replayUrl }}">game.fanfare-cuc.fr/#/replay/{{ ctrl.replayUrl }}</a>{% endverbatim %}</p>
+
             <p>Et si tu venais t'entrainer avec nous? Rendez-vous sur <a href="http://www.fanfare-cuc.fr">notre site</a> ou <a href="https://fr-fr.facebook.com/fanfare.CUC">notre facebook</a> !</p>
         </div>
     </div>
