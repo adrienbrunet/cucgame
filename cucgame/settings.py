@@ -1,4 +1,7 @@
+import json
 import os
+
+from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -10,12 +13,32 @@ def root(*dirs):
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'yq-rh^b#^0-s=tx$_0qz8h@gaz19fxpdc^1ifi96tz7yisp*3m'
+
+key = root("cucgame/secrets.json")
+with open(key) as f:
+    secrets = json.loads(f.read())
+
+
+def get_secret(setting, secret=secrets):
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = "Set the {} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
+
+
+SECRET_KEY = get_secret("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['game.fanfare-cuc.fr']
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'game.fanfare-cuc.fr',
+    'http://127.0.0.1:8000/',
+    'http://127.0.0.1',
+    'localhost',
+]
 
 
 # Application definition
@@ -97,13 +120,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = root('static_prod')
+ASSETS_URL = '/static/'
+STATIC_ROOT = root('static_prod/')
 STATICFILES_DIRS = (
     root('static'),
     root('node_modules'),
-    root('cucgame/static/'),
+    root('cucgame/static'),
 )
 
+STATICFILES_FINDERS = (
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "django_assets.finders.AssetsFinder"
+)
 
 ASSETS_VERSIONS = 'hash:32'
 # The javascript we have doesn't pass with Closure advanced optimizations
@@ -113,9 +142,8 @@ CLOSURE_EXTRA_ARGS = ['--language_in', 'ECMASCRIPT5']
 
 ASSETS_URL_EXPIRE = False
 
-ASSETS_DEBUG = DEBUG is True
-
-ASSETS_AUTO_BUILD = DEBUG is True
+ASSETS_DEBUG = DEBUG
+ASSETS_AUTO_BUILD = DEBUG
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
