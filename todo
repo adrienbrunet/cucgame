@@ -36,10 +36,10 @@ xx load data from fight in replay mode
 xx replay: Run fight automagically
 xx set debug true
 xx set django_asset true
+xx Add a 404/500/403/403_csrf page
+xx limiter le text dans les boutons pour rendering mobile
 
 
-Add a 404/500/403/403_csrf page
-limiter le text dans les boutons pour rendering mobile
 Enlever la vidéo sur mobile (voir pourquoi elle ne marche pas)  (idem son) (ajouter un fond grisé)
 Resize les images
 details des fanfarons qui apparraissent quand on clique dessus

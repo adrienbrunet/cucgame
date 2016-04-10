@@ -40,7 +40,7 @@
         <span class="btn-group" role='group'>
             <button class="btn btn-default" ng-show="!ctrl.audioFlags.isPlaying" ng-click="ctrl.playAudio();"><i class="fa fa-play-circle"></i> Et je remets le son!</button>
             <button class="btn btn-default" ng-show="ctrl.audioFlags.isPlaying" ng-click="ctrl.stopAudio();"><i class="fa fa-pause-circle"></i> Et je coupe le son!</button>
-            <a href="{% url 'rules' %}" class="btn btn-default"><i class="fa fa-life-ring"></i> Au secours, j'ai rien compris !</a>
+            <a href="{% url 'rules' %}" class="btn btn-default"><i class="fa fa-life-ring"></i> Au secours<span class="hidden-xs">, j'ai rien compris</span> !</a>
         </span>
         <audio  autobuffer autoloop loop autoplay>
           <source src="{% static 'songs/cuc_song.ogg' %}" type="audio/ogg">
@@ -55,7 +55,7 @@
         <div ng-if="ctrl.can_play">
             <b>Actif</b>
             <span class="btn-group full-width" role='group'>
-                <button ng-disabled="ctrl.player.counter_default.play_a_song < 1" type="button" class='btn btn-default mid-width' ng-click="ctrl.command_attack(ctrl.enemy, 'play_a_song');"><i class="fa fa-music"></i> {% verbatim %}Jouer "{{ ctrl.song }}" - {{ ctrl.player.counter_default.play_a_song }}/ {{ ctrl.counter_default.play_a_song }}{% endverbatim %}</button>
+                <button ng-disabled="ctrl.player.counter_default.play_a_song < 1" type="button" class='btn btn-default mid-width' ng-click="ctrl.command_attack(ctrl.enemy, 'play_a_song');"><i class="fa fa-music"></i> {% verbatim %}Jouer <span class="hidden-xs">"{{ ctrl.song }}"</span> - {{ ctrl.player.counter_default.play_a_song }}/ {{ ctrl.counter_default.play_a_song }}{% endverbatim %}</button>
                 <button ng-disabled="ctrl.player.counter_default.drink_a_beer < 1" type="button" class='btn btn-success mid-width' ng-click="ctrl.command_attack(ctrl.player, 'drink_a_beer');"><i class="fa fa-beer"></i> Boire une Kro  {% verbatim %}- {{ ctrl.player.counter_default.drink_a_beer }}/ {{ ctrl.counter_default.drink_a_beer }}{% endverbatim %}</button>
             </span>
             <b>Passif</b>
