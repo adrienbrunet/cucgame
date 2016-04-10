@@ -34,15 +34,19 @@ xx deactivate rest framework html
 xx fightdata should be saved with double quotes !!
 xx load data from fight in replay mode
 xx replay: Run fight automagically
+xx set debug true
+xx set django_asset true
 
 
-Add a 404 page
-Ajouter Merci/Charlotte/Thobite
-Fuckin test angular side
-mettre un konami-code qui remplace tout par des bites sur le site.
-set debug true
-set django_asset true
+Add a 404/500/403/403_csrf page
 limiter le text dans les boutons pour rendering mobile
 Enlever la vidéo sur mobile (voir pourquoi elle ne marche pas)  (idem son) (ajouter un fond grisé)
 Resize les images
 details des fanfarons qui apparraissent quand on clique dessus
+Fuckin test angular side
+mettre un konami-code qui remplace tout par des  sur le site.
+
+PRAIRIE
+-------
+Update image on error pages (prarie)
+Ajouter Merci/Charlotte/Thobite/streek

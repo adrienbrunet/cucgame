@@ -1,18 +1,18 @@
 {% extends "skeleton.html" %}
-{% load static %}
 
 {% block ng_app %}{% endblock ng_app %}
+{% load staticfiles %}
 
 {% block body %}
-<div class="container">
-    <div class="row" id="main-row">
-        <div class="col-md-12 col-xs-12 center">
-        	<h1>Page introuvable !</h1>
+    <div class="container">
+        <div class="row" id="main-row">
+            <div class="col-md-12 col-xs-12 center">
+                <h1>Page introuvable !</h1>
 
-        	<img src="{% static 'img/perdu.png' %}">
+                <img src="{% static 'img/perdu.png' %}">
 
-			<h3>Le serveur a du faire un combat de trop. Ou vous avez bu trop de bière !</h3>
-		</div>
-	</div>
-</div>
-{% endblock	body %}
+                <h3>Le serveur a du faire un combat de trop. Ou vous avez bu trop de bière !</h3>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
