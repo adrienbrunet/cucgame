@@ -1,80 +1,80 @@
 {% load static %}
 <div class="row" id="main-row" ng-show="!ctrl.hide_everything" ng-cloak>
     <div class="col-md-12 col-xs-12">
-    <div style="position: absolute; top: 0; height: 100%; z-index: -1;">
-        <video id="video-background" autobuffer autoloop loop autoplay>
-            <source src='{% static "video/bg.mp4" %}' type="video/mp4">
-            <source src='{% static "video/bg.ogg" %}' type="video/ogg">
-            <source src='{% static "video/bg.webm" %}' type="video/webm">
-                Video not supported on your browser.
-        </video>
-    </div>
-    <div class="col-md-6 col-xs-6" ng-cloak id="playerInVideo">
-        <h1>{% verbatim %}{{ ctrl.player.name }}{% endverbatim %}</h1>
-        <div>
-            {% verbatim %}
-            <span><b>HP: </b></span><uib-progressbar type="{{ ctrl.progressbar.player }}" value="ctrl.player.hp"><span style="color:white; white-space:nowrap;">{{ ctrl.player.hp }} %</span></uib-progressbar>
-            {% endverbatim %}
+        <div  class="hidden-xs" style="position: absolute; top: 0; height: 100%; z-index: -1;">
+            <video id="video-background" autobuffer autoloop loop autoplay>
+                <source src='{% static "video/bg.mp4" %}' type="video/mp4">
+                <source src='{% static "video/bg.ogg" %}' type="video/ogg">
+                <source src='{% static "video/bg.webm" %}' type="video/webm">
+                    Video not supported on your browser.
+            </video>
         </div>
-        <div ng-show="ctrl.displayImg" id='player' class="center animated topmargin">
-            {% verbatim %}
-            <img ng-src="{{ctrl.player.img}}" ng-class="{flipImage: ctrl.player.orientation !== 'right'}" alt="Player">
-            {% endverbatim %}
+        <div class="col-md-6 col-xs-6" ng-cloak id="playerInVideo">
+            <h1>{% verbatim %}{{ ctrl.player.name }}{% endverbatim %}</h1>
+            <div>
+                {% verbatim %}
+                <span><b>HP: </b></span><uib-progressbar type="{{ ctrl.progressbar.player }}" value="ctrl.player.hp"><span style="color:white; white-space:nowrap;">{{ ctrl.player.hp }} %</span></uib-progressbar>
+                {% endverbatim %}
+            </div>
+            <div ng-show="ctrl.displayImg" id='player' class="center animated topmargin">
+                {% verbatim %}
+                <img ng-src="{{ctrl.player.img}}" ng-class="{flipImage: ctrl.player.orientation !== 'right'}" alt="Player">
+                {% endverbatim %}
+            </div>
         </div>
-    </div>
-    <div class="col-md-6 col-xs-6" ng-cloak id="enemyInVideo">
-        <h1>{% verbatim %}{{ ctrl.enemy.name }}{% endverbatim %}</h1>
-        <div>
-            <span><b>HP: </b></span>
-            {% verbatim %}
-            <uib-progressbar type="{{ ctrl.progressbar.enemy }}" value="ctrl.enemy.hp"><span style="color:white; white-space:nowrap;">{{ ctrl.enemy.hp }} %</span></uib-progressbar>
-            {% endverbatim %}
+        <div class="col-md-6 col-xs-6" ng-cloak id="enemyInVideo">
+            <h1>{% verbatim %}{{ ctrl.enemy.name }}{% endverbatim %}</h1>
+            <div>
+                <span><b>HP: </b></span>
+                {% verbatim %}
+                <uib-progressbar type="{{ ctrl.progressbar.enemy }}" value="ctrl.enemy.hp"><span style="color:white; white-space:nowrap;">{{ ctrl.enemy.hp }} %</span></uib-progressbar>
+                {% endverbatim %}
+            </div>
+            <div ng-show="ctrl.displayImg" id='enemy' class="center animated topmargin">
+                {% verbatim %}
+                <img ng-src="{{ctrl.enemy.img}}"  ng-class="{flipImage: ctrl.enemy.orientation !== 'left'}" alt="Player">
+                {% endverbatim %}
+            </div>
         </div>
-        <div ng-show="ctrl.displayImg" id='enemy' class="center animated topmargin">
-            {% verbatim %}
-            <img ng-src="{{ctrl.enemy.img}}"  ng-class="{flipImage: ctrl.enemy.orientation !== 'left'}" alt="Player">
-            {% endverbatim %}
-        </div>
-    </div>
-    <div class="col-md-12 col-xs-12 center">
-        <span class="btn-group" role='group'>
-            <button class="btn btn-default" ng-show="!ctrl.audioFlags.isPlaying" ng-click="ctrl.playAudio();"><i class="fa fa-play-circle"></i> Et je remets le son!</button>
-            <button class="btn btn-default" ng-show="ctrl.audioFlags.isPlaying" ng-click="ctrl.stopAudio();"><i class="fa fa-pause-circle"></i> Et je coupe le son!</button>
-            <a href="{% url 'rules' %}" class="btn btn-default"><i class="fa fa-life-ring"></i> Au secours<span class="hidden-xs">, j'ai rien compris</span> !</a>
-        </span>
-        <audio  autobuffer autoloop loop autoplay>
-          <source src="{% static 'songs/cuc_song.ogg' %}" type="audio/ogg">
-          <source src="{% static 'songs/cuc_song.mp3' %}" type="audio/mpeg">
-        Your browser does not support the audio element.
-        </audio>
-    </div>
-    <div class="col-md-6 col-xs-12" ng-cloak>
-        <div ng-if="!ctrl.can_play" class="center" ng-cloak>
-            <h1><i class="fa fa-spin fa-spinner"></i></h1>
-        </div>
-        <div ng-if="ctrl.can_play">
-            <b>Actif</b>
-            <span class="btn-group full-width" role='group'>
-                <button ng-disabled="ctrl.player.counter_default.play_a_song < 1" type="button" class='btn btn-default mid-width' ng-click="ctrl.command_attack(ctrl.enemy, 'play_a_song');"><i class="fa fa-music"></i> {% verbatim %}Jouer <span class="hidden-xs">"{{ ctrl.song }}"</span> - {{ ctrl.player.counter_default.play_a_song }}/ {{ ctrl.counter_default.play_a_song }}{% endverbatim %}</button>
-                <button ng-disabled="ctrl.player.counter_default.drink_a_beer < 1" type="button" class='btn btn-success mid-width' ng-click="ctrl.command_attack(ctrl.player, 'drink_a_beer');"><i class="fa fa-beer"></i> Boire une Kro  {% verbatim %}- {{ ctrl.player.counter_default.drink_a_beer }}/ {{ ctrl.counter_default.drink_a_beer }}{% endverbatim %}</button>
+        <div class="col-md-12 col-xs-12 center">
+            <span class="btn-group" role='group'>
+                <button class="btn btn-default" ng-show="!ctrl.audioFlags.isPlaying" ng-click="ctrl.playAudio();"><i class="fa fa-play-circle"></i> Et je remets le son!</button>
+                <button class="btn btn-default" ng-show="ctrl.audioFlags.isPlaying" ng-click="ctrl.stopAudio();"><i class="fa fa-pause-circle"></i> Et je coupe le son!</button>
+                <a href="{% url 'rules' %}" class="btn btn-default"><i class="fa fa-life-ring"></i> Au secours<span class="hidden-xs">, j'ai rien compris</span> !</a>
             </span>
-            <b>Passif</b>
-            <span class="btn-group full-width" role='group'>
-                <button  ng-disabled="ctrl.player.counter_default.tune < 1" type="button" class='btn btn-default mid-width' ng-click="ctrl.command_attack(ctrl.player, 'tune');"><i class="fa fa-tachometer"></i> S'accorder</button>
-                <button type="button" class='btn btn-default mid-width'  ng-disabled="ctrl.player.counter_default.take_a_piss < 1" ng-click="ctrl.command_attack(ctrl.player, 'take_a_piss');"><i class="fa fa-tint"></i> Pisser</button>
-            </span>
-            <b>Attaque spéciale</b>
-            <button ng-disabled="ctrl.player.counter_default.special_attack < 1" type="button" class='btn btn-info full-width' ng-click="ctrl.command_attack(ctrl.enemy, 'special_attack');"><i class="fa fa-bolt"></i> {% verbatim %}{{ ctrl.player.special_attack }}{% endverbatim %} (coup unique)</button>
+            <audio  autobuffer autoloop loop autoplay>
+              <source src="{% static 'songs/cuc_song.ogg' %}" type="audio/ogg">
+              <source src="{% static 'songs/cuc_song.mp3' %}" type="audio/mpeg">
+            Your browser does not support the audio element.
+            </audio>
         </div>
-    </div>
-    <div class="col-md-6 col-xs-12" ng-cloak>
-        <div class="col-md-12 col-xs-12" ng-if='ctrl.currentAttack.enemy'>
-            <h4><b>Représailles</b></h4>
-            {% verbatim %}
-            <p ng-cloak>{{ ctrl.enemyAttackDescription }}</p>
-            {% endverbatim %}
+        <div class="col-md-6 col-xs-12" ng-cloak>
+            <div ng-if="!ctrl.can_play" class="center" ng-cloak>
+                <h1><i class="fa fa-spin fa-spinner"></i></h1>
+            </div>
+            <div ng-if="ctrl.can_play">
+                <b>Actif</b>
+                <span class="btn-group full-width" role='group'>
+                    <button ng-disabled="ctrl.player.counter_default.play_a_song < 1" type="button" class='btn btn-default mid-width' ng-click="ctrl.command_attack(ctrl.enemy, 'play_a_song');"><i class="fa fa-music"></i> {% verbatim %}Jouer <span class="hidden-xs">"{{ ctrl.song }}"</span> - {{ ctrl.player.counter_default.play_a_song }}/ {{ ctrl.counter_default.play_a_song }}{% endverbatim %}</button>
+                    <button ng-disabled="ctrl.player.counter_default.drink_a_beer < 1" type="button" class='btn btn-success mid-width' ng-click="ctrl.command_attack(ctrl.player, 'drink_a_beer');"><i class="fa fa-beer"></i> Boire une Kro  {% verbatim %}- {{ ctrl.player.counter_default.drink_a_beer }}/ {{ ctrl.counter_default.drink_a_beer }}{% endverbatim %}</button>
+                </span>
+                <b>Passif</b>
+                <span class="btn-group full-width" role='group'>
+                    <button  ng-disabled="ctrl.player.counter_default.tune < 1" type="button" class='btn btn-default mid-width' ng-click="ctrl.command_attack(ctrl.player, 'tune');"><i class="fa fa-tachometer"></i> S'accorder</button>
+                    <button type="button" class='btn btn-default mid-width'  ng-disabled="ctrl.player.counter_default.take_a_piss < 1" ng-click="ctrl.command_attack(ctrl.player, 'take_a_piss');"><i class="fa fa-tint"></i> Pisser</button>
+                </span>
+                <b>Attaque spéciale</b>
+                <button ng-disabled="ctrl.player.counter_default.special_attack < 1" type="button" class='btn btn-info full-width' ng-click="ctrl.command_attack(ctrl.enemy, 'special_attack');"><i class="fa fa-bolt"></i> {% verbatim %}{{ ctrl.player.special_attack }}{% endverbatim %} (coup unique)</button>
+            </div>
         </div>
-    </div>
+        <div class="col-md-6 col-xs-12" ng-cloak>
+            <div class="col-md-12 col-xs-12" ng-if='ctrl.currentAttack.enemy'>
+                <h4><b>Représailles</b></h4>
+                {% verbatim %}
+                <p ng-cloak>{{ ctrl.enemyAttackDescription }}</p>
+                {% endverbatim %}
+            </div>
+        </div>
     </div>
     <hr>
     <div class="col-md-12 col-xs-12">

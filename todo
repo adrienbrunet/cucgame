@@ -38,9 +38,9 @@ xx set debug true
 xx set django_asset true
 xx Add a 404/500/403/403_csrf page
 xx limiter le text dans les boutons pour rendering mobile
+xx son autoplay pour mobile
+xx Enlever la vidéo sur mobile (voir pourquoi elle ne marche pas)  (idem son)
 
-
-Enlever la vidéo sur mobile (voir pourquoi elle ne marche pas)  (idem son) (ajouter un fond grisé)
 Resize les images
 details des fanfarons qui apparraissent quand on clique dessus
 Fuckin test angular side
@@ -50,3 +50,4 @@ PRAIRIE
 -------
 Update image on error pages (prarie)
 Ajouter Merci/Charlotte/Thobite/streek
+Ne pas laisser de personnes blanches !

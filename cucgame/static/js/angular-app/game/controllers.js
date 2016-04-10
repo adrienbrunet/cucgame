@@ -14,6 +14,7 @@ function MainController($scope, $timeout, $http, GameAudio, GameUI, GameManager,
 
     $timeout(function () {
         GameUI.dimVideoAndDIv();
+        GameAudio.playAudio();
     });
 
     self.counter_default = GameManager.counter_default;
@@ -283,6 +284,7 @@ function ReplayController ($routeParams, $timeout, GameAudio, GameUI, GameManage
 
     // UI adjustements
     GameUI.dimVideoAndDIv();
+    GameAudio.playAudio();
 
     self.hide_everything = true;
     self.endOfGame = false;
