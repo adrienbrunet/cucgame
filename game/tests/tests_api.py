@@ -42,4 +42,20 @@ class TestFightViewSet(TestCase):
 
     def test_data_is_nested_for_player(self):
         req = self.c.get('/api/fights/%s/' % self.fight.pk, format='json')
-        assert isinstance(json.loads(req.content.decode('utf-8'))['winner_data'], dict)
+        assert isinstance(
+            json.loads(req.content.decode('utf-8'))['winner_data'],
+            dict)
+
+    def test_get_fight_data(self):
+        req = self.c.get('/api/fights/%s/get_fight_data/?uuid=%s' % (
+            self.fight.pk, self.fight.uuid), format='json')
+        rep = json.loads(req.content.decode('utf-8'))
+        assert isinstance(rep, dict)
+        assert rep != []
+
+    def test_get_fight_data_wrong_pk(self):
+        req = self.c.get('/api/fights/%s/get_fight_data/?uuid=%s' % (
+            self.fight.pk, 0000), format='json')
+        rep = json.loads(req.content.decode('utf-8'))
+        assert isinstance(rep, dict)
+        assert rep == {}

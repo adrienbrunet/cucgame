@@ -1,14 +1,13 @@
 # PYTHON
-import ast
 import json
 from uuid import uuid4
+
+# DJANGO
+from django.http import JsonResponse
 
 # THIRD PARTY APPS
 from rest_framework import mixins, viewsets
 from rest_framework.decorators import detail_route
-
-# DJANGO
-from django.http import JsonResponse
 
 # OUR WEBAPP
 from .models import Fight
@@ -31,6 +30,6 @@ class FightViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, mixins.Crea
             fight_data_json = fight_obj.data
             fight_data = json.loads(fight_data_json)
         except:
-            fight_data = []
+            fight_data = {}
 
-        return JsonResponse(fight_data, safe=False)
+        return JsonResponse(fight_data)
