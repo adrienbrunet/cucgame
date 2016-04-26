@@ -2,6 +2,7 @@ angular.module('game', [
     'ngResource',
     'ngAnimate',
     'ngRoute',
+    'ngCookies'
 ])
 
     .config(['$httpProvider', function ($httpProvider) {

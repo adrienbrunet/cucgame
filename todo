@@ -43,7 +43,8 @@ xx Enlever la vidéo sur mobile (voir pourquoi elle ne marche pas)  (idem son)
 xx Add one test for api
 
 Resize les images
-details des fanfarons qui apparraissent quand on clique dessus
+Faire une page de stat pour chaque fanfarons: participations à x combats, nb de victoire, points etc... 10 derniers combats
+stats des fanfarons qui apparraissent quand on clique dessus
 Fuckin test angular side
 mettre un konami-code qui remplace tout par des *** sur le site.
 

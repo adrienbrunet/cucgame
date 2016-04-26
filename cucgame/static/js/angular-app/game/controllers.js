@@ -45,11 +45,7 @@ function MainController($scope, $timeout, $http, GameAudio, GameUI, GameManager,
     };
 
     self.switchPlayer = function (player) {
-        if (player == 'player') {
-            return 'enemy';
-        } else {
-            return 'player';
-        }
+        return (player == 'player') ? 'enemy' : 'player';
     };
 
     self.end_game = function (win_or_lose) {

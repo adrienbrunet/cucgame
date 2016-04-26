@@ -14,8 +14,8 @@ class Fight(models.Model):
     uuid = models.CharField(max_length=255, unique=True)
     date = models.DateTimeField(auto_now_add=True, null=True)
     data = models.TextField()
-    winner = models.ForeignKey('Player', related_name='fights_won')
     loser = models.ForeignKey('Player', related_name='fights_lost')
+    winner = models.ForeignKey('Player', related_name='fights_won')
 
     objects = FightManager()
 
