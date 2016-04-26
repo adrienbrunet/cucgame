@@ -90,5 +90,18 @@ players = [
     {
         'id': 23,
         'name': 'Antigel'
+    },
+    {
+        'id': 24,
+        'name': 'Chaboulasse'
+    },
+    {
+        'id': 25,
+        'name': 'Merci'
+    },
+    {
+        'id': 26,
+        'name': 'Thobbite'
     }
+
 ]

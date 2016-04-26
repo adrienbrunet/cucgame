@@ -325,6 +325,33 @@ function GameManager(Character) {
                 "max_hp": 100,
                 "orientation": "right",
                 "img": "/static/img/antigel.png"
+            },
+            {
+                "id": 24,
+                "name": "Chaboulasse",
+                "special_attack": "Attaque Chaboulassssss",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/chaboulasse.png"
+            },
+            {
+                "id": 25,
+                "name": "Merci",
+                "special_attack": "Attaque Gros Musc'e",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/merci.png"
+            },
+            {
+                "id": 26,
+                "name": "Thobbite",
+                "special_attack": "Attaque cidre anglais de brooklin",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/thobbite.png"
             }
         ];
 
