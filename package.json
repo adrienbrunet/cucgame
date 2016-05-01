@@ -15,7 +15,10 @@
     "font-awesome": "^4.5.0",
     "lodash": "^4.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jasmine-core": "^2.4.1",
+    "karma-jasmine": "^0.3.8"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

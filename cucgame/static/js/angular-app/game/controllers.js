@@ -82,7 +82,7 @@ function MainController($scope, $timeout, $http, GameAudio, GameUI, GameManager,
     }, true);
 
     self.command_attack = function (target, attack, current_character) {
-        if (angular.isUndefined(current_character)|| current_character === null) {
+        if (angular.isUndefined(current_character) || current_character === null) {
             current_character = self.player;
         }
 
@@ -111,9 +111,8 @@ function MainController($scope, $timeout, $http, GameAudio, GameUI, GameManager,
         } else {
             target.hp = result;
         }
-        var targetClass = target === self.player ? "#player" : "#enemy";
         var classToAdd = attack_dmg > 0 ? "shake" : "tada";
-        var elt = angular.element(document.querySelector(targetClass));
+        var elt = angular.element(document.querySelector('#' + targetName));
         elt.addClass(classToAdd);
 
         current_character.counter_default[attack] = current_character.counter_default[attack] - 1;
@@ -129,7 +128,6 @@ function MainController($scope, $timeout, $http, GameAudio, GameUI, GameManager,
         } else {
             self.can_play = true;
         }
-
 
     };
 
@@ -189,15 +187,11 @@ function MainController($scope, $timeout, $http, GameAudio, GameUI, GameManager,
         }
         if (self.enemy.hp > 50) {
             if (self.enemy.counter_default.play_a_song > 0) {
-                angular.forEach(['play_a_song', 'play_a_song', 'play_a_song'], function (attack) {
-                    attacks.push(attack);
-                });
+                attacks.concat(['play_a_song', 'play_a_song', 'play_a_song']);
             }
         } else {
             if (self.enemy.counter_default.drink_a_beer > 0) {
-                angular.forEach(['drink_a_beer', 'drink_a_beer'], function (attack) {
-                    attacks.push(attack);
-                });
+                attacks.concat(['drink_a_beer', 'drink_a_beer']);
             }
             if (self.enemy.counter_default.play_a_song > 0) {
                 attacks.push('play_a_song');

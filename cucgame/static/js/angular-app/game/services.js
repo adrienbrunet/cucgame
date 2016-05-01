@@ -115,7 +115,8 @@ function GameManager(Character) {
             "Simonarium",
             "Santeria",
             "Goletta",
-            "Happy"
+            "Happy",
+            "Counting Stars"
         ];
 
         self._all_characters = [
