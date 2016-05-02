@@ -60,7 +60,7 @@ describe('GameUI service', function () {
 
         spyOn(document, 'querySelector').and.returnValue(dummyPlayer);
 
-        GameUI.cleanClassPlayer('test')
+        GameUI.cleanClassPlayer('test');
         expect(dummyPlayer.className).toBe('');
     });
 
@@ -194,6 +194,60 @@ describe('GameManager service', function () {
     it('should return a number between 0 and 50', function () {
         expect(GameManager.play_a_song() >= 0 && GameManager.play_a_song() <= 50).toBe(true);
         expect(typeof GameManager.play_a_song()).toEqual(typeof 42);
+    });
+
+});
+
+describe('GameLogger service', function () {
+    beforeEach(module('game'));
+
+    beforeEach(inject(function (_GameLogger_) {
+        GameLogger = _GameLogger_;
+    }));
+
+    it('should have null values or empty Arrays at first', function () {
+        expect(GameLogger.player).toEqual(null);
+        expect(GameLogger.enemy).toEqual(null);
+        expect(GameLogger.playerActions).toEqual([]);
+        expect(GameLogger.enemyActions).toEqual([]);
+    });
+
+    it('should init player and enemy values', function () {
+        var player = {name: 'player'};
+        var enemy = {name: 'enemy'};
+
+        GameLogger.initPlayersAndActions(player, enemy);
+
+        expect(GameLogger.player.name).toEqual('player');
+        expect(GameLogger.enemy.name).toEqual('enemy');
+        expect(GameLogger.playerActions).toEqual([]);
+        expect(GameLogger.enemyActions).toEqual([]);
+    });
+
+    it('should log one action', function () {
+        var player = {name: 'player'};
+        GameLogger.player = player;
+        target = player;
+        typeAction = 'foo';
+        description = '';
+        damage = 45;
+
+        GameLogger.logAction(player, target, typeAction, description, damage);
+
+        expect(GameLogger.playerActions.length).toEqual(1);
+
+    });
+
+    it('should dump data in json for future post data', function () {
+        var player = {name: 'player'};
+        GameLogger.player = player;
+
+        expect(typeof GameLogger.dump()).toEqual(typeof 'imAString');
+
+        var data = GameLogger.dump();
+        var decodedJson = JSON.parse(data);
+
+        expect(decodedJson.player.name == player.name).toBe(true);
     });
 
 });
