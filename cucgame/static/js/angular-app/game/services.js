@@ -39,7 +39,7 @@ function GameUI () {
     "use strict";
     var self = {};
 
-    self.dimVideoAndDIv = function () {
+    self.dimVideoAndDiv = function () {
         var row, videoElt, heightVideo, playerInVideo, enemyInVideo;
         row = angular.element(document.getElementById('main-row'))[0];
         videoElt = angular.element(document.getElementById('video-background'))[0];

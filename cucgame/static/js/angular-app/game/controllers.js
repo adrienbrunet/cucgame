@@ -13,7 +13,7 @@ function MainController($scope, $timeout, $http, GameAudio, GameUI, GameManager,
     self.playAudio = GameAudio.playAudio;
 
     $timeout(function () {
-        GameUI.dimVideoAndDIv();
+        GameUI.dimVideoAndDiv();
         GameAudio.playAudio();
     });
 
@@ -273,7 +273,7 @@ function ReplayController ($routeParams, $timeout, GameAudio, GameUI, GameManage
     self.replay = true;
 
     // UI adjustements
-    GameUI.dimVideoAndDIv();
+    GameUI.dimVideoAndDiv();
     GameAudio.playAudio();
 
     self.hide_everything = true;
@@ -288,7 +288,7 @@ function ReplayController ($routeParams, $timeout, GameAudio, GameUI, GameManage
             self.hide_everything = false;
         },
         function (err) {
-            alert("Une erreur malencontruse s'est produite. Désolé. C'est pas pour auourd'hui");
+            alert("Une erreur malencontruse s'est produite. Désolé. C'est pas pour aujourd'hui");
         }
     );
 
