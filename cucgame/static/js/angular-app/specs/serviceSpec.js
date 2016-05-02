@@ -10,25 +10,38 @@ describe('GameAudio service', function () {
         expect(GameAudio.flags.isPlaying).toBe(true);
     });
 
+    it('should play the audio and set the flag to true', function () {
+        dummyAudioPlayer = document.createElement('audio');
+        spyOn(document, 'getElementsByTagName').and.callFake(function () {
+            return [dummyAudioPlayer];
+        });
 
+        spyOn(dummyAudioPlayer, 'play');
 
+        GameAudio.flags.isPlaying = false;
+
+        GameAudio.playAudio();
+
+        expect(GameAudio.flags.isPlaying).toBe(true);
+        expect(dummyAudioPlayer.play).toHaveBeenCalled();
+    });
+
+    it('should stop the audio and set the flag to false', function () {
+        dummyAudioPlayer = document.createElement('audio');
+        spyOn(document, 'getElementsByTagName').and.callFake(function () {
+            return [dummyAudioPlayer];
+        });
+
+        spyOn(dummyAudioPlayer, 'pause');
+
+        GameAudio.flags.isPlaying = true;
+
+        GameAudio.stopAudio();
+
+        expect(GameAudio.flags.isPlaying).toBe(false);
+        expect(dummyAudioPlayer.pause).toHaveBeenCalled();
+    });
 });
-
-//     var getAudioPlayer = function () {
-//         return document.getElementsByTagName('audio')[0];
-//     };
-
-//     self.stopAudio = function () {
-//         var audioPlayer = getAudioPlayer();
-//         audioPlayer.pause();
-//         self.flags.isPlaying = false;
-//     };
-
-//     self.playAudio = function () {
-//         var audioPlayer = getAudioPlayer();
-//         audioPlayer.play();
-//         self.flags.isPlaying = true;
-//     };
 
 
 describe('GameUI service', function () {
@@ -37,7 +50,6 @@ describe('GameUI service', function () {
 
     beforeEach(inject(function (_GameUI_) {
         GameUI = _GameUI_;
-
     }));
 
     it('should remove class shake or tada from player html', function () {
@@ -120,3 +132,68 @@ describe('GameUI service', function () {
 //         playerInVideo.setAttribute("style","min-height:" + heightVideo + "px");
 //         enemyInVideo.setAttribute("style","min-height:" + heightVideo + "px");
 //     };
+
+
+describe('GameManager service', function () {
+
+    beforeEach(module('game'));
+
+    beforeEach(inject(function (_GameManager_) {
+        GameManager = _GameManager_;
+    }));
+
+
+    it('should init hp player and counter', function () {
+        character = {'max_hp': 100, 'counter_default': 'foobar'};
+
+        GameManager.init_player(character);
+
+        expect(character.hp).toEqual(100);
+        expect(character.counter_default).toEqual(GameManager.counter_default);
+    });
+
+    it('should have 5 elements in counter_default', function () {
+        expect(Object.keys(GameManager.counter_default).length).toEqual(5);
+    });
+
+    it('should have 22 songs', function () {
+        expect(GameManager._all_songs.length).toEqual(22);
+    });
+
+    it('should have 26 different players', function () {
+        var ids = [];
+        var names = [];
+
+        for (var i = 0; i < GameManager._all_characters.length; i++) {
+            if (ids.indexOf(GameManager._all_characters[i].id) === -1) {
+                ids.push(i);
+            }
+            if (ids.indexOf(GameManager._all_characters[i].name) === -1) {
+                names.push(i);
+            }
+        }
+        expect(ids.length).toEqual(26);
+        expect(names.length).toEqual(26);
+    });
+
+    it('should return a number between 0 and 30', function () {
+        expect(GameManager.play_a_song() >= 0 && GameManager.play_a_song() <= 30).toBe(true);
+        expect(typeof GameManager.play_a_song()).toEqual(typeof 42);
+    });
+
+    it('should return a number between -30 and 0', function () {
+        expect(GameManager.drink_a_beer() <= 0 && GameManager.drink_a_beer() >= -30).toBe(true);
+        expect(typeof GameManager.drink_a_beer()).toEqual(typeof -42);
+    });
+
+    it('should return 0 (passive attacks)', function () {
+        expect(GameManager.take_a_piss()).toEqual(0);
+        expect(GameManager.tune()).toEqual(0);
+    });
+
+    it('should return a number between 0 and 50', function () {
+        expect(GameManager.play_a_song() >= 0 && GameManager.play_a_song() <= 50).toBe(true);
+        expect(typeof GameManager.play_a_song()).toEqual(typeof 42);
+    });
+
+});
