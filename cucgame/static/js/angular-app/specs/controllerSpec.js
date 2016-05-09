@@ -53,7 +53,8 @@ describe('ReplayController:', function () {
         // $httpBackend.verifyNoOutstandingRequest();
     });
 
-    it('is initiated', function () {
+    it('is initiated', inject(function ($timeout) {
+      $timeout.flush();
       expect(GameUI.dimVideoAndDiv).toHaveBeenCalled();
       expect(GameAudio.playAudio).toHaveBeenCalled();
 
@@ -61,7 +62,7 @@ describe('ReplayController:', function () {
       expect(controller.replay).toBe(true);
       expect(controller.hide_everything).toBe(true);
       expect(controller.endOfGame).toBe(false);
-    });
+    }));
 
     it('load fight', function () {
       $httpBackend.flush();
