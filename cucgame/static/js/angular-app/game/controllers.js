@@ -133,7 +133,7 @@ function MainController($scope, $timeout, $http, GameAudio, GameUI, GameManager,
 
     self.descriptionAttack = function (player, attack) {
         // Describe the attack. If the player is the enemy, update the variable so that the ui can display it!
-        var isPlayer = player === self.player ? true : false;
+        var isPlayer = player === self.player;
         var description = player.name;
         if (attack === 'special_attack') {
             description += " utilise son attaque spéciale : " + player.special_attack;
@@ -185,13 +185,16 @@ function MainController($scope, $timeout, $http, GameAudio, GameUI, GameManager,
         if (self.enemy.counter_default.drink_a_beer === 0) {
             attacks.push('take_a_piss');
         }
+
         if (self.enemy.hp > 50) {
             if (self.enemy.counter_default.play_a_song > 0) {
-                attacks.concat(['play_a_song', 'play_a_song', 'play_a_song']);
+                attacks.push('play_a_song');
+                attacks.concat(['play_a_song', 'play_a_song']);
             }
         } else {
             if (self.enemy.counter_default.drink_a_beer > 0) {
-                attacks.concat(['drink_a_beer', 'drink_a_beer']);
+                attacks.push('drink_a_beer');
+                attacks.push('drink_a_beer');
             }
             if (self.enemy.counter_default.play_a_song > 0) {
                 attacks.push('play_a_song');

@@ -174,7 +174,7 @@ describe('ReplayController:', function () {
 /* -------------------------------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
 
-describe('ReplayController:', function () {
+describe('MainController:', function () {
   beforeEach(module('game'));
 
   var $controller;
@@ -207,7 +207,15 @@ describe('ReplayController:', function () {
       GameManager = {
         init_player: function () {},
         _all_characters: [{id: 0}, {id: 1}],
-        _all_songs: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ,19 ,20, 21, 22, 23, 24, 25]
+        _all_songs: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ,19 ,20, 21, 22, 23, 24, 25],
+         counter_default: {
+          "play_a_song": 5,
+          "drink_a_beer": 2,
+          "take_a_piss": 0,
+          "tune": 0,
+          "special_attack": 1
+        },
+        tune: function () {}
       };
       GameLogger = {
         logAction: function () {},
@@ -289,156 +297,142 @@ describe('ReplayController:', function () {
     });
 
     it('test hp watchers', function () {
+      spyOn(controller, 'checkHP');
+      $scope.$apply("ctrl.player = {hp: 100};");
+      $scope.$apply("ctrl.enemy = {hp: 100};");
+      expect(controller.checkHP).toHaveBeenCalledWith(100, 'player');
+      expect(controller.checkHP).toHaveBeenCalledWith(100, 'enemy');
+    });
 
-//     $scope.$watch('ctrl.player.hp', function (hp) {
-//         self.checkHP(hp, 'player');
-//     }, true);
-//     $scope.$watch('ctrl.enemy.hp', function (hp) {
-//         self.checkHP(hp, 'enemy');
-//     }, true);
+    it('should handle a chosen attack', inject(function ($timeout) {
+      controller.player = {hp:100, counter_default: GameManager.counter_default};
+      controller.enemy = {hp:100, counter_default: GameManager.counter_default};
+
+      spyOn(GameLogger, 'logAction');
+      spyOn(controller, 'descriptionAttack');
+      spyOn(controller, 'updateCounter');
+      spyOn(controller, 'run_enemy_tour');
+
+      var target = controller.player;
+      var attack = 'tune';
+      var current_character = controller.player;
+
+      controller.command_attack(target, attack, current_character);
+
+      expect(GameLogger.logAction).toHaveBeenCalled();
+      expect(controller.descriptionAttack).toHaveBeenCalled();
+      expect(controller.updateCounter).toHaveBeenCalled();
+
+      $timeout.flush();
+      expect(controller.run_enemy_tour).toHaveBeenCalled();
+
+      controller.player = {hp: -1000, counter_default: GameManager.counter_default};
+      current_character = controller.player;
+      target = controller.player;
+      controller.command_attack(target, attack, current_character);
+      expect(controller.can_play).toBe(false);
+    }));
+
+    it('describe the attack', function () {
+      attack = 'special_attack';
+      player = {hp: 100, name: 'foo'};
+      controller.player = player;
+
+      expect(controller.descriptionAttack(player, attack).indexOf('foo') !== -1).toBe(true);
+
+      enemy = {hp: 100, name: 'bar'};
+      controller.enemy = enemy;
+
+      expect(controller.descriptionAttack(enemy, attack).indexOf('bar') !== -1).toBe(true);
+      expect(controller.descriptionAttack(enemy, attack).indexOf('attaque spéciale') !== -1).toBe(true);
+
+      attack = 'play_a_song';
+      expect(controller.descriptionAttack(enemy, attack).indexOf(' joue ') !== -1).toBe(true);
+
+      attack = 'drink_a_beer';
+      expect(controller.descriptionAttack(enemy, attack).indexOf('bourre la gueule') !== -1).toBe(true);
+
+      attack = 'take_a_piss';
+      expect(controller.descriptionAttack(enemy, attack).indexOf('pisse un coup') !== -1).toBe(true);
+
+      attack = 'tune';
+      expect(controller.descriptionAttack(enemy, attack).indexOf('accorde') !== -1).toBe(true);
+
+      controller.enemyAttackDescription = null;
+      controller.descriptionAttack(enemy, attack);
+      expect(controller.enemyAttackDescription !== null).toBe(true);
 
     });
 
+    it('should update the counter after each attack (side effect)', function () {
+      player = {'counter_default': GameManager.counter_default};
 
+      attack = 'take_a_piss';
+      controller.updateCounter(player, attack);
+      expect(player.counter_default.drink_a_beer).toEqual(2);
+      expect(player.counter_default.take_a_piss).toEqual(0);
 
+      attack = 'drink_a_beer';
+      controller.updateCounter(player, attack);
+      expect(player.counter_default.take_a_piss).toEqual(1);
 
+      attack = 'play_a_song';
+      controller.updateCounter(player, attack);
+      expect(player.counter_default.tune).toEqual(1);
 
-//     self.command_attack = function (target, attack, current_character) {
-//         if (angular.isUndefined(current_character) || current_character === null) {
-//             current_character = self.player;
-//         }
+      attack = 'tune';
+      controller.updateCounter(player, attack);
+      expect(player.counter_default.play_a_song).toEqual(5);
 
-//         if (current_character === self.player) {
-//             self.can_play = false;
-//             self.currentAttack.player = undefined;
-//             self.currentAttack.enemy = undefined;
-//         }
+      player.counter_default.play_a_song = 0;
+      controller.updateCounter(player, attack);
+      expect(player.counter_default.play_a_song).toEqual(3);
 
-//         var attack_method = mapping_attack[attack];
-
-//         attack_dmg = attack_method();
-
-//         var description = self.descriptionAttack(current_character, attack);
-
-//         // log attack info
-//         var targetName = target === self.player ? "player" : "enemy";
-//         GameLogger.logAction(current_character, targetName, attack, description, attack_dmg);
-
-//         result = target.hp - attack_dmg;
-//         if (result > 100) {
-//             target.hp = 100;
-//         } else if (result <= 0) {
-//             target.hp = result;
-//             return;
-//         } else {
-//             target.hp = result;
-//         }
-//         var classToAdd = attack_dmg > 0 ? "shake" : "tada";
-//         var elt = angular.element(document.querySelector('#' + targetName));
-//         elt.addClass(classToAdd);
-
-//         current_character.counter_default[attack] = current_character.counter_default[attack] - 1;
-
-//         self.updateCounter(current_character, attack);
-
-//         if (current_character === self.player) {
-//             $timeout(function () {
-//                 self.random_songs();
-//                 GameUI.cleanClass();
-//                 self.run_enemy_tour();
-//             }, 800);
-//         } else {
-//             self.can_play = true;
-//         }
-
-//     };
-
-//     self.descriptionAttack = function (player, attack) {
-//         // Describe the attack. If the player is the enemy, update the variable so that the ui can display it!
-//         var isPlayer = player === self.player ? true : false;
-//         var description = player.name;
-//         if (attack === 'special_attack') {
-//             description += " utilise son attaque spéciale : " + player.special_attack;
-//         } else if (attack === 'play_a_song') {
-//             var song = isPlayer ? self.song : self.other_song;
-//             description += " joue " + song + " !!";
-//         } else if (attack === 'drink_a_beer') {
-//             description += " se bourre la gueule et gagne des HP !";
-//         } else if (attack === 'take_a_piss') {
-//             description += " pisse un coup !";
-//         } else if (attack === 'tune') {
-//             description += " s'accorde (ou fait semblant) avant de rejouer !";
-//         }
-
-//         if (player === self.enemy) {
-//             self.enemyAttackDescription = description;
-//         }
-
-//         return description;
-//     };
-
-//     self.updateCounter = function (character, attack) {
-//         if (attack === 'take_a_piss') {
-//             character.counter_default['drink_a_beer'] = 2;
-//             character.counter_default['take_a_piss'] = 0;
-//         } else if (attack === 'drink_a_beer') {
-//             character.counter_default['take_a_piss'] = 1;
-//         } else if (attack === 'play_a_song') {
-//             character.counter_default['tune'] = 1;
-//         } else if (attack === 'tune') {
-//             character.counter_default['play_a_song'] = Math.min(5, character.counter_default['play_a_song'] + 3);
-//         }
-//     };
-
+    });
 
     it('should give random songs', function () {
       controller.random_songs();
       expect(controller.song !== GameManager._all_songs[0]);
     });
 
-//     self.chose_attack = function () {
-//         var attacks = [];
-//         var target;
-//         if (self.enemy.counter_default.special_attack > 0) {
-//             attacks.push('special_attack');
-//         }
-//         if (self.enemy.counter_default.play_a_song === 0) {
-//             attacks.push('tune');
-//         }
-//         if (self.enemy.counter_default.drink_a_beer === 0) {
-//             attacks.push('take_a_piss');
-//         }
-//         if (self.enemy.hp > 50) {
-//             if (self.enemy.counter_default.play_a_song > 0) {
-//                 attacks.concat(['play_a_song', 'play_a_song', 'play_a_song']);
-//             }
-//         } else {
-//             if (self.enemy.counter_default.drink_a_beer > 0) {
-//                 attacks.concat(['drink_a_beer', 'drink_a_beer']);
-//             }
-//             if (self.enemy.counter_default.play_a_song > 0) {
-//                 attacks.push('play_a_song');
-//             }
-//         }
+    it('should chose an attack for the enemy according to hp', function () {
+      controller.player = {};
+      controller.enemy = {
+        hp: 100,
+        counter_default: {
+          'special_attack': 0,
+          'take_a_piss':0,
+          'play_a_song': 1,
+          'drink_a_beer': 1,
+          'tune': 0
+        }
+      };
 
-//         action = _.shuffle(attacks)[0];
-//         if (action === 'play_a_song' || action === 'special_attack') {
-//             target = self.player;
-//         } else {
-//             target = self.enemy;
-//         }
-//         return [action, target];
-//     };
+      var action, target;
+      [action, target] = controller.chose_attack();
+      expect(action).toEqual('play_a_song');
+      expect(target).toEqual(controller.player);
 
-//     self.run_enemy_tour = function () {
-//         res = self.chose_attack();
-//         attack = res[0];
-//         target = res[1];
+      controller.enemy.counter_default = {
+        'special_attack': 0,
+        'take_a_piss':0,
+        'play_a_song': 0,
+        'drink_a_beer': 1,
+        'tune': 0
+      };
+      [action, target] = controller.chose_attack();
+      expect(action).toEqual('tune');
+      expect(target).toEqual(controller.enemy);
+    });
 
-//         self.currentAttack.enemy = attack;
+    it('should run the enemy tour', function () {
+      spyOn(controller, 'command_attack');
+      controller.chose_attack = function () {return ['foo', 'bar'];};
+      controller.run_enemy_tour();
 
-//         self.command_attack(target, attack, self.enemy);
-//     };
+      expect(controller.currentAttack.enemy).toEqual('foo');
+      expect(controller.command_attack).toHaveBeenCalled();
+    });
 
     it('should called init (reset is an alias)', function () {
       spyOn(controller, 'init').and.returnValue(undefined);
@@ -446,41 +440,24 @@ describe('ReplayController:', function () {
       expect(controller.init).toHaveBeenCalled();
     });
 
+    it('init the game', inject(function ($timeout) {
 
-//     self.displayImg = true;
+      spyOn(GameUI, 'cleanStartAnimation');
+      controller.init();
 
-//     self.init = function () {
-//         self.displayImg = false;
-//         self.loser = undefined;
-//         self.winner = undefined;
-//         self.hide_everything = false;
-//         self.replayUrl = "";
-//         self.enemyAttackDescription = "";
+      $timeout.flush();
 
-//         $timeout(function () {
-//             self.players = _.shuffle(GameManager._all_characters);
-//             self.player = self.players[0];
-//             self.enemy = self.players[1];
+      expect(typeof controller.player.id === typeof 42).toBe(true);
 
-//             GameManager.init_player(self.player);
-//             GameManager.init_player(self.enemy);
-//             GameLogger.initPlayersAndActions(self.player, self.enemy);
-//             $timeout(function(){
-//                 GameUI.cleanClass();
-//                 GameUI.addStartAnimation();
-//             }, 0);
-//             self.displayImg = true;
-//             $timeout(function () {
-//                 GameUI.cleanStartAnimation();
-//             }, 1000);
+      $timeout.flush();
 
-//             self.currentAttack.enemy = undefined;
-//             self.can_play = true;
+      expect(GameUI.cleanClass).toHaveBeenCalled();
+      expect(GameUI.addStartAnimation).toHaveBeenCalled();
+      expect(GameUI.cleanStartAnimation).toHaveBeenCalled();
 
-//             self.random_songs();
-//         }, 0);
+      expect(controller.can_play).toBe(true);
 
-//     };
+    }));
 
  });
 });
