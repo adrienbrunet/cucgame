@@ -35,7 +35,7 @@ function GameAudio () {
 GameAudio.$inject = [];
 
 
-function GameUI () {
+function GameUI ($timeout) {
     "use strict";
     var self = {};
 
@@ -49,6 +49,17 @@ function GameUI () {
         enemyInVideo = angular.element(document.getElementById('enemyInVideo'))[0];
         playerInVideo.setAttribute("style","min-height:" + heightVideo + "px");
         enemyInVideo.setAttribute("style","min-height:" + heightVideo + "px");
+        $timeout(function () {
+            // image height so that feets are on the floor.
+            var textHeight = angular.element(document.getElementById('textInVideoPlayer'))[0].offsetHeight;
+            // 16/23 is the ratio taken by the ring on the image
+            var newHeight = Math.round(heightVideo * (16/23) - textHeight) + 'px';
+
+            angular.element(document.getElementById('player'))[0].setAttribute('style', 'height:'  + newHeight);
+            angular.element(document.getElementById('playerImg'))[0].setAttribute('style', 'height:'  + newHeight);
+            angular.element(document.getElementById('enemy'))[0].setAttribute('style', 'height:'  + newHeight);
+            angular.element(document.getElementById('enemyImg'))[0].setAttribute('style', 'height:'  + newHeight);
+        }, 200);
     };
 
     self.cleanClassPlayer = function (player) {
@@ -73,7 +84,7 @@ function GameUI () {
 
     return self;
 }
-GameUI.$inject = [];
+GameUI.$inject = ['$timeout'];
 
 
 function GameManager(Character) {

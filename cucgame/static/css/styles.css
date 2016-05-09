@@ -22,10 +22,6 @@ p, div {
     width: 50%;
 }
 
-.topmargin {
-    margin-top: 150px;
-}
-
 .flipImage {
 	-moz-transform: scaleX(-1);
     -o-transform: scaleX(-1);

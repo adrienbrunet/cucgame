@@ -10,29 +10,33 @@
             </video>
         </div>
         <div class="col-md-6 col-xs-6" ng-cloak id="playerInVideo">
-            <h1>{% verbatim %}{{ ctrl.player.name }}{% endverbatim %}</h1>
-            <div>
-                {% verbatim %}
-                <span><b>HP: </b></span><uib-progressbar type="{{ ctrl.progressbar.player }}" value="ctrl.player.hp"><span style="color:white; white-space:nowrap;">{{ ctrl.player.hp }} %</span></uib-progressbar>
-                {% endverbatim %}
+            <div id="textInVideoPlayer">
+                <h1 style="margin-top: 0px; padding-top: 20px;">{% verbatim %}{{ ctrl.player.name }}{% endverbatim %}</h1>
+                <div>
+                    {% verbatim %}
+                    <span><b>HP: </b></span><uib-progressbar type="{{ ctrl.progressbar.player }}" value="ctrl.player.hp"><span style="color:white; white-space:nowrap;">{{ ctrl.player.hp }} %</span></uib-progressbar>
+                    {% endverbatim %}
+                </div>
             </div>
-            <div ng-show="ctrl.displayImg" id='player' class="center animated topmargin">
+            <div ng-show="ctrl.displayImg" id='player' class="center animated">
                 {% verbatim %}
-                <img ng-src="{{ctrl.player.img}}" ng-class="{flipImage: ctrl.player.orientation !== 'right'}" alt="Player">
+                <img ng-src="{{ctrl.player.img}}" id='playerImg' ng-class="{flipImage: ctrl.player.orientation !== 'right'}" alt="Player">
                 {% endverbatim %}
             </div>
         </div>
         <div class="col-md-6 col-xs-6" ng-cloak id="enemyInVideo">
-            <h1>{% verbatim %}{{ ctrl.enemy.name }}{% endverbatim %}</h1>
-            <div>
-                <span><b>HP: </b></span>
-                {% verbatim %}
-                <uib-progressbar type="{{ ctrl.progressbar.enemy }}" value="ctrl.enemy.hp"><span style="color:white; white-space:nowrap;">{{ ctrl.enemy.hp }} %</span></uib-progressbar>
-                {% endverbatim %}
+            <div id="textInVideoEnemy">
+                <h1 style="margin-top: 0px; padding-top: 20px;">{% verbatim %}{{ ctrl.enemy.name }}{% endverbatim %}</h1>
+                <div>
+                    <span><b>HP: </b></span>
+                    {% verbatim %}
+                    <uib-progressbar type="{{ ctrl.progressbar.enemy }}" value="ctrl.enemy.hp"><span style="color:white; white-space:nowrap;">{{ ctrl.enemy.hp }} %</span></uib-progressbar>
+                    {% endverbatim %}
+                </div>
             </div>
-            <div ng-show="ctrl.displayImg" id='enemy' class="center animated topmargin">
+            <div ng-show="ctrl.displayImg" id='enemy' class="center animated">
                 {% verbatim %}
-                <img ng-src="{{ctrl.enemy.img}}"  ng-class="{flipImage: ctrl.enemy.orientation !== 'left'}" alt="Player">
+                <img ng-src="{{ctrl.enemy.img}}" id='enemyImg' ng-class="{flipImage: ctrl.enemy.orientation !== 'left'}" alt="Player">
                 {% endverbatim %}
             </div>
         </div>

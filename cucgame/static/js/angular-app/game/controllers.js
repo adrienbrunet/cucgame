@@ -15,7 +15,7 @@ function MainController($scope, $timeout, $http, GameAudio, GameUI, GameManager,
     $timeout(function () {
         GameUI.dimVideoAndDiv();
         GameAudio.playAudio();
-    });
+    }, 200);
 
     self.counter_default = GameManager.counter_default;
 
@@ -276,8 +276,10 @@ function ReplayController ($routeParams, $timeout, GameAudio, GameUI, GameManage
     self.replay = true;
 
     // UI adjustements
-    GameUI.dimVideoAndDiv();
-    GameAudio.playAudio();
+    $timeout(function () {
+        GameUI.dimVideoAndDiv();
+        GameAudio.playAudio();
+    }, 200);
 
     self.hide_everything = true;
     self.endOfGame = false;
@@ -334,7 +336,7 @@ function ReplayController ($routeParams, $timeout, GameAudio, GameUI, GameManage
                 return self.endFight();
             } else {
                 self.applyAction(data.enemyActions[round], 'enemy');
-                $timeout(function(){
+                $timeout(function (){
                     round++;
                     self.fight(data, round);
                 }, 1500);
@@ -349,7 +351,7 @@ function ReplayController ($routeParams, $timeout, GameAudio, GameUI, GameManage
         var animation = action.damage > 0 ? 'shake' : 'tada';
         var elt = angular.element(document.querySelector("#" + action.target));
         elt.addClass(animation);
-        $timeout(function(){
+        $timeout(function (){
             GameUI.cleanClassPlayer(action.target);
         }, 1300);
 
