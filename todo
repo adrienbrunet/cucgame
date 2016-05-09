@@ -41,11 +41,11 @@ xx limiter le text dans les boutons pour rendering mobile
 xx son autoplay pour mobile
 xx Enlever la vidéo sur mobile (voir pourquoi elle ne marche pas)  (idem son)
 xx Add one test for api
+xx Fuckin test angular side
+xx Resize les images dynamically
 
-Resize les images
 Faire une page de stat pour chaque fanfarons: participations à x combats, nb de victoire, points etc... 10 derniers combats
 stats des fanfarons qui apparraissent quand on clique dessus
-Fuckin test angular side
 mettre un konami-code qui remplace tout par des *** sur le site.
 
 PRAIRIE
@@ -55,3 +55,4 @@ Virer le hashtag et le poing sur tg
 Ajouter streek
 Ne pas laisser de personnes blanches !
 Vidéo teasing?
+resize image (same size for all, feet on bottom)
