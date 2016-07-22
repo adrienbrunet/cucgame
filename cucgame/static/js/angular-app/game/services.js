@@ -364,6 +364,15 @@ function GameManager(Character) {
                 "max_hp": 100,
                 "orientation": "left",
                 "img": "/static/img/thobbite.png"
+            },
+            {
+                "id": 27,
+                "name": "Frotie",
+                "special_attack": "Attaque rire hystérique !",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/frotie.png"
             }
         ];
 

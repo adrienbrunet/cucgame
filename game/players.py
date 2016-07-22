@@ -102,6 +102,10 @@ players = [
     {
         'id': 26,
         'name': 'Thobbite'
+    },
+    {
+        'id': 27,
+        'name': 'Frotie'
     }
 
 ]
