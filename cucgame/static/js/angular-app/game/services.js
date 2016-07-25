@@ -41,25 +41,27 @@ function GameUI ($timeout) {
 
     self.dimVideoAndDiv = function () {
         var row, videoElt, heightVideo, playerInVideo, enemyInVideo;
-        row = angular.element(document.getElementById('main-row'))[0];
-        videoElt = angular.element(document.getElementById('video-background'))[0];
-        videoElt.setAttribute("style","width:" + row.offsetWidth + "px");
-        heightVideo = videoElt.offsetHeight - 70;
-        playerInVideo = angular.element(document.getElementById('playerInVideo'))[0];
-        enemyInVideo = angular.element(document.getElementById('enemyInVideo'))[0];
-        playerInVideo.setAttribute("style","min-height:" + heightVideo + "px");
-        enemyInVideo.setAttribute("style","min-height:" + heightVideo + "px");
+        $timeout(function () {
+            row = angular.element(document.getElementById('main-row'))[0];
+            videoElt = angular.element(document.getElementById('video-background'))[0];
+            videoElt.setAttribute("style","width:" + row.offsetWidth + "px");
+            heightVideo = videoElt.offsetHeight + 10;
+            playerInVideo = angular.element(document.getElementById('playerInVideo'))[0];
+            enemyInVideo = angular.element(document.getElementById('enemyInVideo'))[0];
+            playerInVideo.setAttribute("style","min-height:" + heightVideo + "px");
+            enemyInVideo.setAttribute("style","min-height:" + heightVideo + "px");
+        }, 100);
         $timeout(function () {
             // image height so that feets are on the floor.
             var textHeight = angular.element(document.getElementById('textInVideoPlayer'))[0].offsetHeight;
             // 16/23 is the ratio taken by the ring on the image
-            var newHeight = Math.round(heightVideo * (16/23) - textHeight) + 'px';
+            var newHeight = Math.round((heightVideo - 10) * (16/23) - textHeight) + 'px';
 
             angular.element(document.getElementById('player'))[0].setAttribute('style', 'height:'  + newHeight);
             angular.element(document.getElementById('playerImg'))[0].setAttribute('style', 'height:'  + newHeight);
             angular.element(document.getElementById('enemy'))[0].setAttribute('style', 'height:'  + newHeight);
             angular.element(document.getElementById('enemyImg'))[0].setAttribute('style', 'height:'  + newHeight);
-        }, 200);
+        }, 100);
     };
 
     self.cleanClassPlayer = function (player) {

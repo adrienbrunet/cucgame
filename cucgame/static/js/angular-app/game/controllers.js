@@ -348,6 +348,9 @@ function ReplayController ($routeParams, $timeout, GameAudio, GameUI, GameManage
         self[currentPlayer].descriptionAttack = action.description;
         var target = action.target === 'player' ? self.player : self.enemy;
         target.hp -= action.damage;
+        if (target.hp > 100) {
+            target.hp = 100;
+        }
         var animation = action.damage > 0 ? 'shake' : 'tada';
         var elt = angular.element(document.querySelector("#" + action.target));
         elt.addClass(animation);
