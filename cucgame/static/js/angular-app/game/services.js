@@ -459,12 +459,12 @@ function GameManager(Character) {
             },
             {
                 "id": 37,
-                "name": "Pudubec",
+                "name": "Pudubek",
                 "special_attack": "Enjaillement fatal",
                 "hp": 100,
                 "max_hp": 100,
                 "orientation": "left",
-                "img": "/static/img/pudubec.png"
+                "img": "/static/img/pudubek.png"
             },
             {
                 "id": 38,
