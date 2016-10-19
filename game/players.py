@@ -117,98 +117,94 @@ players = [
     },
     {
         'id': 30,
-        'name': 'Frotie'
-    },
-    {
-        'id': 31,
         'name': 'Doofy'
     },
     {
-        'id': 32,
+        'id': 31,
         'name': 'Watson'
     },
     {
-        'id': 33,
+        'id': 32,
         'name': 'Hakuna'
     },
     {
-        'id': 34,
+        'id': 33,
         'name': 'Ze Big Dong'
     },
     {
-        'id': 35,
+        'id': 34,
         'name': 'Demi'
     },
     {
-        'id': 36,
+        'id': 35,
         'name': 'Moulinex'
     },
     {
-        'id': 37,
+        'id': 36,
         'name': 'Ketchup'
     },
     {
-        'id': 38,
+        'id': 37,
         'name': 'Pudubec'
     },
     {
-        'id': 39,
+        'id': 38,
         'name': 'C++'
     },
     {
-        'id': 40,
+        'id': 39,
         'name': 'Flancoco'
     },
     {
-        'id': 41,
+        'id': 40,
         'name': 'Luigi'
     },
     {
-        'id': 42,
+        'id': 41,
         'name': 'Nean'
     },
     {
-        'id': 43,
+        'id': 42,
         'name': 'Porci'
     },
     {
-        'id': 44,
+        'id': 43,
         'name': 'Fecalum'
     },
     {
-        'id': 45,
+        'id': 44,
         'name': 'Jet'
     },
     {
-        'id': 46,
+        'id': 45,
         'name': 'Ringo'
     },
     {
-        'id': 47,
+        'id': 46,
         'name': 'Quinouille'
     },
     {
-        'id': 48,
+        'id': 47,
         'name': 'Cersei'
     },
     {
-        'id': 49,
+        'id': 48,
         'name': 'Tchino'
     },
     {
-        'id': 50,
+        'id': 49,
         'name': 'Pochère'
     },
     {
-        'id': 51,
+        'id': 50,
         'name': 'Chtouille'
     },
     {
-        'id': 52,
+        'id': 51,
         'name': 'Philly'
     },
     {
-        'id': 53,
+        'id': 52,
         'name': 'Cocci'
     },
 ]

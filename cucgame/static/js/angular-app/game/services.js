@@ -375,7 +375,233 @@ function GameManager(Character) {
                 "max_hp": 100,
                 "orientation": "left",
                 "img": "/static/img/frotie.png"
+            },
+            {
+                "id": 28,
+                "name": "He Ben Voilà",
+                "special_attack": "Dégustation de digestifs !",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "right",
+                "img": "/static/img/hebenvoila.png"
+            },
+            {
+                "id": 29,
+                "name": "Adapteur",
+                "special_attack": "Solo de sauvetage",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/adapteur.png"
+            },
+            {
+                "id": 30,
+                "name": "Doofy",
+                "special_attack": "Coup de moustache",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/doofy.png"
+            },
+            {
+                "id": 31,
+                "name": "Watson",
+                "special_attack": "Balékoouilles !",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/watson.png"
+            },
+            {
+                "id": 32,
+                "name": "Hakuna",
+                "special_attack": "Ondulation tentaculaire",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "right",
+                "img": "/static/img/hakuna.png"
+            },
+            {
+                "id": 33,
+                "name": "Ze Big Dong",
+                "special_attack": "Hey hey haaaa",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/zebigdong.png"
+            },
+            {
+                "id": 34,
+                "name": "Demi",
+                "special_attack": "Force du trouple",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/demi.png"
+            },
+            {
+                "id": 35,
+                "name": "Moulinex",
+                "special_attack": "Ascenceur émotionnel",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/moulinex.png"
+            },
+            {
+                "id": 36,
+                "name": "Ketchup",
+                "special_attack": "Besoin d'aide?",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/ketchup.png"
+            },
+            {
+                "id": 37,
+                "name": "Pudubec",
+                "special_attack": "Enjaillement fatal",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/pudubec.png"
+            },
+            {
+                "id": 38,
+                "name": "C++",
+                "special_attack": "Nique-tympans",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/cpp.png"
+            },
+            {
+                "id": 39,
+                "name": "Flancoco",
+                "special_attack": "Tempo Yolo",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/flancoco.png"
+            },
+            {
+                "id": 40,
+                "name": "Luigi",
+                "special_attack": "Do you feel good?",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/luigi.png"
+            },
+            {
+                "id": 41,
+                "name": "Nean",
+                "special_attack": "Pouet!",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/nean.png"
+            },
+            {
+                "id": 42,
+                "name": "Porci",
+                "special_attack": "Pet de cornichon",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/porci.png"
+            },
+            {
+                "id": 43,
+                "name": "Fecalum",
+                "special_attack": "Fécanon",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/fecalum.png"
+            },
+            {
+                "id": 44,
+                "name": "Jet",
+                "special_attack": "Dosage colorimétrique à la bière",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/jet.png"
+            },
+            {
+                "id": 45,
+                "name": "Ringo",
+                "special_attack": "Air trombone",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/ringo.png"
+            },
+            {
+                "id": 46,
+                "name": "Quinouille",
+                "special_attack": "Rage du mordor",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/quinouille.png"
+            },
+            {
+                "id": 47,
+                "name": "Cersei",
+                "special_attack": "Triplekiss",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/cersei.png"
+            },
+            {
+                "id": 48,
+                "name": "Tchino",
+                "special_attack": "Punchline urticante",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "right",
+                "img": "/static/img/tchino.png"
+            },
+            {
+                "id": 49,
+                "name": "Pochère",
+                "special_attack": "Sivouplé",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/pochere.png"
+            },
+            {
+                "id": 50,
+                "name": "Chtouille",
+                "special_attack": "Yeux du démon",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "right",
+                "img": "/static/img/chtouille.png"
+            },
+            {
+                "id": 51,
+                "name": "Philly",
+                "special_attack": "Trempette",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/philly.png"
+            },
+            {
+                "id": 52,
+                "name": "Cocci",
+                "special_attack": "Troll de soirée",
+                "hp": 100,
+                "max_hp": 100,
+                "orientation": "left",
+                "img": "/static/img/cocci.png"
             }
+
         ];
 
         self.play_a_song = function () {
