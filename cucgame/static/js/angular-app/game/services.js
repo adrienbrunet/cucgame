@@ -496,7 +496,7 @@ function GameManager(Character) {
             {
                 "id": 41,
                 "name": "Nean",
-                "special_attack": "Pouet!",
+                "special_attack": "<empty>",
                 "hp": 100,
                 "max_hp": 100,
                 "orientation": "left",
