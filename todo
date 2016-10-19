@@ -1,49 +1,3 @@
-xx favicon
-xx settings logging for py test
-xx drf
-xx assets
-xx angular-animate
-xx ajouter image
-xx animer les images
-xx changer les progressbar pour éviter que ca saute
-xx Quand on pisse ou s'accorde, on peut monter au dessus du max !
-xx reinitialiser attaque enemy (représaille) quand on reset la partie
-xx screenshot pr prary
-xx classement elo
-xx font
-xx ajouter video
-xx bug combat (infinite spinner) (quand l'ennemi se soigne? attaque speciale? Rien de tout ca?)
-xx passer en prod
-xx ajouter un fadein slide effect
-xx mettre un fond stylé
-xx ajouter lien vers la page du cuc
-xx sauver issue des combats
-xx ajouter logo podium
-xx ajouter prary dans le code
-xx trier les joueurs selon leurs classements et ajouter les medailles
-xx handle left-right characters
-xx ajouter son
-xx analytics
-xx Add button on ranking to go back to the game
-xx ajouter d'autre format pour la vidéo
-xx Ajouter un petit timeout juste avant de gagner pour qu'on voit l'attaque qu'on a fait (idem si on perd)
-xx Enlever les class d'animation après la fin d'un combat
-xx sauver log du combat
-xx page explication règles
-xx deactivate rest framework html
-xx fightdata should be saved with double quotes !!
-xx load data from fight in replay mode
-xx replay: Run fight automagically
-xx set debug true
-xx set django_asset true
-xx Add a 404/500/403/403_csrf page
-xx limiter le text dans les boutons pour rendering mobile
-xx son autoplay pour mobile
-xx Enlever la vidéo sur mobile (voir pourquoi elle ne marche pas)  (idem son)
-xx Add one test for api
-xx Fuckin test angular side
-xx Resize les images dynamically
-
 Faire une page de stat pour chaque fanfarons: participations à x combats, nb de victoire, points etc... 10 derniers combats
 stats des fanfarons qui apparraissent quand on clique dessus
 mettre un konami-code qui remplace tout par des *** sur le site.
@@ -52,7 +6,4 @@ PRAIRIE
 -------
 Update image on error pages
 Virer le hashtag et le poing sur tg
-Ajouter streek
 Ne pas laisser de personnes blanches !
-Vidéo teasing?
-resize image (same size for all, feet on bottom)
