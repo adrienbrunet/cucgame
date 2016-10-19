@@ -4,7 +4,7 @@
 import copy
 
 # DJANGO
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 
 # OUR WEBAPP
 from game.models import Player
@@ -12,7 +12,7 @@ from game.players import players
 
 
 class Command(BaseCommand):
-    help = 'Adds player to the game (just CUC players)'
+    help = 'Adds player to the game (all players in players.py)'
 
     def handle(self, *args, **options):
         print('Adding Players')
