@@ -67,7 +67,7 @@ function MainController($scope, $timeout, $http, GameAudio, GameUI, GameManager,
     };
 
     self.checkHP = function (hp, player_or_enemy) {
-         if (hp <= 0) {
+        if (hp <= 0) {
             self.end_game(player_or_enemy);
         } else {
             self.progressbar[player_or_enemy] = self.update_class_progressbar(hp);
@@ -157,14 +157,14 @@ function MainController($scope, $timeout, $http, GameAudio, GameUI, GameManager,
 
     self.updateCounter = function (character, attack) {
         if (attack === 'take_a_piss') {
-            character.counter_default['drink_a_beer'] = 2;
-            character.counter_default['take_a_piss'] = 0;
+            character.counter_default.drink_a_beer = 2;
+            character.counter_default.take_a_piss = 0;
         } else if (attack === 'drink_a_beer') {
-            character.counter_default['take_a_piss'] = 1;
+            character.counter_default.take_a_piss = 1;
         } else if (attack === 'play_a_song') {
-            character.counter_default['tune'] = 1;
+            character.counter_default.tune = 1;
         } else if (attack === 'tune') {
-            character.counter_default['play_a_song'] = Math.min(5, character.counter_default['play_a_song'] + 3);
+            character.counter_default.play_a_song = Math.min(5, character.counter_default.play_a_song + 3);
         }
     };
 
